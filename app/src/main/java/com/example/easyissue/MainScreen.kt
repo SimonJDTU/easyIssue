@@ -7,24 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class LoginScreen : Fragment() {
+class MainScreen : Fragment() {
 
     companion object {
-        fun newInstance() = LoginScreen()
+        fun newInstance() = MainScreen()
     }
 
-    private lateinit var viewModel: LoginScreenViewModel
+    private lateinit var viewModel: MainScreenViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_screen_fragment, container, false)
+        return inflater.inflate(R.layout.main_screen_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginScreenViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MainScreenViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
