@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 
 class MainScreen : Fragment() {
 
@@ -14,6 +16,7 @@ class MainScreen : Fragment() {
     }
 
     private lateinit var viewModel: MainScreenViewModel
+    private lateinit var navigator: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +28,8 @@ class MainScreen : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainScreenViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        navigator = this.findNavController()
 
+        navigator.navigate(R.id.mainScreen_to_loginScreen)
+    }
 }
