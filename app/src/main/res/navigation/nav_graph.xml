@@ -9,12 +9,12 @@
         android:id="@+id/loginScreen"
         android:name="com.example.easyissue.LoginScreen"
         android:label="fragment_login_screen"
-        tools:layout="@layout/login_screen_fragment" />
+        tools:layout="@layout/login_screen" />
     <fragment
         android:id="@+id/mainScreen"
         android:name="com.example.easyissue.MainScreen"
         android:label="main_screen_fragment"
-        tools:layout="@layout/main_screen_fragment" >
+        tools:layout="@layout/main_screen" >
         <action
             android:id="@+id/mainScreen_to_loginScreen"
             app:destination="@id/loginScreen" />

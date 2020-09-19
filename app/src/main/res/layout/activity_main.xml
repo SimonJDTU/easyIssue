@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".BaseActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/mainFragment"
-        android:name="androidx.navi"
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="com.example.easyissue.LoginScreen"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
