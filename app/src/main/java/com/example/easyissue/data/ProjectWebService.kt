@@ -1,35 +1,54 @@
 package com.example.easyissue.data
 
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class ProjectWebService {
+object GithubWebService {
 
-    init {
-        retrofitInstance = createRetrofitInstance()
+    private val client: GithubProjectApi = getGithubClient().buildService(GithubProjectApi::class.java)
+
+    fun getProjects() {
+        val call = client.getProjects()
+
+        call.enqueue(object : Callback<List<ProjectSearchModels>> {
+            override fun onResponse(
+                call: Call<List<ProjectSearchModels>>,
+                response: Response<List<ProjectSearchModels>>
+            ) {
+                if (response.isSuccessful) {
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProjectSearchModels>>, t: Throwable) {
+                t.message.let {
+
+                }
+            }
+        })
     }
 
-    private fun createRetrofitInstance(): Retrofit{
-        return Retrofit.Builder()
-            .baseUrl(ProjectSearchApi.API_URL)
-            .client(getHttpClient())
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-    }
+    fun getUser(){
+        val call = client.getUser()
 
-    private fun getHttpClient(): OkHttpClient {
-        val okHttpBuilder = OkHttpClient.Builder()
-        okHttpBuilder.addInterceptor { chain ->
-            val requestWithUserAgent = chain.request().newBuilder()
-                .header("User-Agent", "My custom user agent")
-                .build()
-            chain.proceed(requestWithUserAgent)
-        }
-        return okHttpBuilder.build()
-    }
+        call.enqueue(object : Callback<User> {
+            override fun onResponse(
+                call: Call<User>,
+                response: Response<User>
+            ) {
+                if (response.isSuccessful) {
 
-    companion object{
-        lateinit var retrofitInstance : Retrofit
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                t.message.let {
+
+                }
+            }
+        })
     }
 }
+
+
