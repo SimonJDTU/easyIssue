@@ -33,7 +33,7 @@ private fun getHttpClient(): OkHttpClient {
     okHttpBuilder.addInterceptor { chain ->
         val requestWithUserAgent = chain.request().newBuilder()
             //TODO: Dont push this
-            .header("Authorization", "Bearer" + " " + "29bd93bfd8e6edb7790676322518cac2b7a72652")
+            .header("Authorization", "Bearer" + " " + "Token")
             .build()
         chain.proceed(requestWithUserAgent)
     }
