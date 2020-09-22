@@ -3,22 +3,26 @@ package com.example.easyissue
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.example.easyissue.data.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginScreenViewModel : ViewModel() {
-    var loginInfo: ObservableField<String> = ObservableField("nothing received")
-
-    fun setLoginInfo(msg: String){
-        loginInfo.set(msg)
-    }
+    val loginInfo: ObservableField<String> = ObservableField("")
+    var isLoading: ObservableField<Boolean> = ObservableField(false)
 
     fun getUser(){
         GithubWebService.getUser()
+            .doOnSubscribe{ isLoading.set(true) }
+            .doFinally{ isLoading.set(false) }
+            .subscribe { User ->
+                loginInfo.set(User.toString())
+            }
     }
 
     fun getProjects() {
         GithubWebService.getProjects()
+            .doOnSubscribe{ isLoading.set(true) }
+            .doFinally{ isLoading.set(false) }
+            .subscribe { Projects ->
+                loginInfo.set(Projects.toString())
+            }
     }
 }

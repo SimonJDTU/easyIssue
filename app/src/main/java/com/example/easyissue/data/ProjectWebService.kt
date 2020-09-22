@@ -1,53 +1,32 @@
 package com.example.easyissue.data
 
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
+import retrofit2.Retrofit
+import retrofit2.http.GET
 
 object GithubWebService {
 
-    private val client: GithubProjectApi = getGithubClient().buildService(GithubProjectApi::class.java)
+    private val client: Retrofit = getGithubClient()
+    private val service: GithubProjectApi = client.buildService(GithubProjectApi::class.java)
 
-    fun getProjects() {
-        val call = client.getProjects()
-
-        call.enqueue(object : Callback<List<ProjectSearchModels>> {
-            override fun onResponse(
-                call: Call<List<ProjectSearchModels>>,
-                response: Response<List<ProjectSearchModels>>
-            ) {
-                if (response.isSuccessful) {
-
-                }
-            }
-
-            override fun onFailure(call: Call<List<ProjectSearchModels>>, t: Throwable) {
-                t.message.let {
-
-                }
-            }
-        })
+    fun getProjects(): Single<List<Projects>> {
+        return service.getProjects()
+            .subscribeOn(Schedulers.io())
     }
 
-    fun getUser(){
-        val call = client.getUser()
+    fun getUser(): Single<User>{
+        return service.getUser()
+            .subscribeOn(Schedulers.io())
+    }
 
-        call.enqueue(object : Callback<User> {
-            override fun onResponse(
-                call: Call<User>,
-                response: Response<User>
-            ) {
-                if (response.isSuccessful) {
+    interface GithubProjectApi {
 
-                }
-            }
+        @GET("/user")
+        fun getUser(): Single<User>
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                t.message.let {
-
-                }
-            }
-        })
+        @GET("/user/repos")
+        fun getProjects(): Single<List<Projects>>
     }
 }
 

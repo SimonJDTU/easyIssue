@@ -1,11 +1,9 @@
 package com.example.easyissue.data
 
-import com.squareup.moshi.FromJson
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.ToJson
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 private const val GITHUB_BASE_URL = "https://api.github.com"
 
@@ -13,13 +11,8 @@ fun getGithubClient(): Retrofit {
     return Retrofit.Builder()
         .baseUrl(GITHUB_BASE_URL)
         .client(getHttpClient())
-        .addConverterFactory(
-            MoshiConverterFactory.create(
-                Moshi.Builder()
-                    .add(ArrayListAdapter)
-                    .build()
-            )
-        )
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
 }
 
@@ -40,17 +33,9 @@ private fun getHttpClient(): OkHttpClient {
     okHttpBuilder.addInterceptor { chain ->
         val requestWithUserAgent = chain.request().newBuilder()
             //TODO: Dont push this
-            .header("Authorization", "Bearer" + " " + "Token")
+            .header("Authorization", "Bearer" + " " + "29bd93bfd8e6edb7790676322518cac2b7a72652")
             .build()
         chain.proceed(requestWithUserAgent)
     }
     return okHttpBuilder.build()
-}
-
-private object ArrayListAdapter {
-    @ToJson
-    fun arrayListToJson(list: ArrayList<ProjectSearchModels>): List<ProjectSearchModels> = list
-
-    @FromJson
-    fun arrayListFromJson(list: List<ProjectSearchModels>): ArrayList<ProjectSearchModels> = ArrayList(list)
 }
