@@ -6,11 +6,20 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val GITHUB_BASE_URL = "https://api.github.com"
+private val okHttpClient: OkHttpClient by lazy {
+    OkHttpClient.Builder().addInterceptor { chain ->
+        val requestWithUserAgent = chain.request().newBuilder()
+            //TODO: Dont push this
+            .header("Authorization", "Bearer" + " " + "Token")
+            .build()
+        chain.proceed(requestWithUserAgent)
+    }.build()
+}
 
 fun getGithubClient(): Retrofit {
     return Retrofit.Builder()
         .baseUrl(GITHUB_BASE_URL)
-        .client(getHttpClient())
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
@@ -26,16 +35,4 @@ fun getAnotherClient(): Retrofit? {
 
 fun<T> Retrofit.buildService(service: Class<T>): T{
     return this.create(service)
-}
-
-private fun getHttpClient(): OkHttpClient {
-    val okHttpBuilder = OkHttpClient.Builder()
-    okHttpBuilder.addInterceptor { chain ->
-        val requestWithUserAgent = chain.request().newBuilder()
-            //TODO: Dont push this
-            .header("Authorization", "Bearer" + " " + "Token")
-            .build()
-        chain.proceed(requestWithUserAgent)
-    }
-    return okHttpBuilder.build()
 }

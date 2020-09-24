@@ -1,20 +1,68 @@
 <resources>
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
     <item name="android:windowBackground">@color/colorPrimaryDark</item>
   </style>
 
-  <style name="textTitle" parent="TextAppearance.AppCompat.Title">
-    <item name="android:textSize">@dimen/textTitle</item>
-    <item name="android:textColor">@color/white</item>
-    <item name="android:fontFamily">@font/roboto_bold_condensed</item>
+  <!-- View styles -->
+  <style name="tokenInputField" parent="Widget.AppCompat.EditText">
+    <item name="editTextStyle">@style/Title2</item>
+    <item name="android:background">@drawable/inputfield_shape</item>
+    <item name="android:backgroundTint">@color/white</item>
+    <item name="android:textAlignment">center</item>
     <item name="android:layout_marginStart">@dimen/gutterMargin</item>
     <item name="android:layout_marginEnd">@dimen/gutterMargin</item>
-    <item name="android:layout_marginTop">32dp</item>
+  </style>
+
+  <style name="standardButton" parent="TextAppearance.AppCompat.Button">
+    <item name="android:textSize">@dimen/textHeadline</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:background">@drawable/inputfield_shape</item>
+    <item name="android:backgroundTint">@color/colorPrimaryDark</item>
+  </style>
+
+  <!-- Text styles -->
+  <style name="StandardText" parent="TextAppearance.AppCompat">
+    <item name="android:textColor">@color/white</item>
+    <item name="android:fontFamily">@font/roboto_bold_condensed</item>
+  </style>
+
+  <style name="Display" parent="StandardText"> <!-- Titles -->
+    <item name="android:textSize">@dimen/textDisplay</item>
+    <item name="android:fontFamily">@font/roboto_light</item>
+  </style>
+
+  <style name="Header" parent="StandardText"> <!-- Page Titles -->
+    <item name="android:textSize">@dimen/textHeader</item>
+    <item name="android:fontFamily">@font/roboto_bold</item>
+  </style>
+
+  <style name="Title1" parent="StandardText"> <!-- Tabs titles forms -->
+    <item name="android:textSize">@dimen/textTitle1</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+  </style>
+
+  <style name="Title2" parent="StandardText"> <!-- Button tabs titles forms -->
+    <item name="android:textSize">@dimen/textTitle2</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+  </style>
+
+  <style name="Headline" parent="StandardText"> <!-- Info paragraphs -->
+    <item name="android:textSize">@dimen/textHeadline</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="Body" parent="StandardText"> <!-- Standard descriptions -->
+    <item name="android:textSize">@dimen/textBody</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="Caption" parent="StandardText"> <!-- Time stamps, footers -->
+    <item name="android:textSize">@dimen/textCaption</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
   </style>
 
 </resources>

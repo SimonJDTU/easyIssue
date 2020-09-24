@@ -30,6 +30,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="64dp"
             android:background="@drawable/icon_shape"
+            android:backgroundTint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,20 +38,42 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/logo"
-                android:layout_margin="20dp"/>
+                android:layout_margin="20dp"
+                android:src="@mipmap/logo" />
         </FrameLayout>
 
         <EditText
             android:id="@+id/tokenInput"
+            style="@style/tokenInputField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_height="60dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="@dimen/gutterMargin"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/token_hint"
+            android:maxLines="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logoContainer" />
+
+        <TextView
+            android:id="@+id/tokenTitle"
+            style="@style/Title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_token_title"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@id/tokenInput"
+            app:layout_constraintTop_toBottomOf="@id/tokenInput" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="@dimen/questionmark_icon"
+            android:layout_height="@dimen/questionmark_icon"
+            android:background="@color/transparent"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_questionmark_icon"
+            app:layout_constraintBottom_toBottomOf="@id/tokenTitle"
+            app:layout_constraintStart_toEndOf="@id/tokenTitle"
+            app:layout_constraintTop_toTopOf="@id/tokenTitle" />
 
         <!-- tODO: Delete -->
         <TextView
@@ -58,12 +81,13 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
             android:layout_marginRight="40dp"
+            android:layout_marginTop="40dp"
             android:text="@{viewModel.loginInfo}"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tokenInput" />
+            app:layout_constraintTop_toBottomOf="@+id/tokenTitle" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
@@ -71,43 +95,26 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:visibility="@{viewModel.isLoading}"
-            app:lottie_rawRes="@raw/loading_animation"
-            app:lottie_loop="true"
-            app:lottie_speed="2"
-            app:lottie_autoPlay="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone"/>
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_animation"
+            app:lottie_speed="2"
+            tools:visibility="gone" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/getUserBtn"
+            style="@style/standardButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.validateToken()}"
+            android:text="@string/validate_token_btn"
             android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginEnd="@dimen/gutterMargin"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/gutterMargin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:weightSum="2">
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/getProjectsBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{()->viewModel.getProjects()}"
-                android:layout_marginEnd="@dimen/gutterMargin"
-                android:text="make project call"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/getUserBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{()->viewModel.getUser()}"
-                android:text="make user call"
-                android:layout_marginStart="@dimen/gutterMargin"
-                android:layout_weight="1"/>
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

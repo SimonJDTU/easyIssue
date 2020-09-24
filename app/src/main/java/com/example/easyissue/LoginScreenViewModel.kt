@@ -2,27 +2,22 @@ package com.example.easyissue
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
+import com.example.easyissue.SignInState.*
 import com.example.easyissue.data.*
 
 class LoginScreenViewModel : ViewModel() {
     val loginInfo: ObservableField<String> = ObservableField("")
     var isLoading: ObservableField<Boolean> = ObservableField(false)
+    lateinit var stateManager: StateManager
 
-    fun getUser(){
+    fun validateToken(){
         GithubWebService.getUser()
             .doOnSubscribe{ isLoading.set(true) }
             .doFinally{ isLoading.set(false) }
-            .subscribe { User ->
-                loginInfo.set(User.toString())
-            }
-    }
-
-    fun getProjects() {
-        GithubWebService.getProjects()
-            .doOnSubscribe{ isLoading.set(true) }
-            .doFinally{ isLoading.set(false) }
-            .subscribe { Projects ->
-                loginInfo.set(Projects.toString())
+            .doOnError {t ->
+                stateManager.signInStateObservable.postValue(Fail(t.toString()))
+            }.subscribe { _ ->
+                stateManager.signInStateObservable.postValue(Success)
             }
     }
 }

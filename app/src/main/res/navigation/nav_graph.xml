@@ -3,20 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainScreen">
+    app:startDestination="@id/loginScreen">
 
     <fragment
         android:id="@+id/loginScreen"
         android:name="com.example.easyissue.LoginScreen"
         android:label="fragment_login_screen"
-        tools:layout="@layout/login_screen" />
+        tools:layout="@layout/login_screen" >
+        <action
+            android:id="@+id/loginScreen_to_mainScreen"
+            app:destination="@id/mainScreen"
+            app:exitAnim="@anim/slide_down"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/loginScreen"
+            app:popUpToInclusive="true" />
+
+    </fragment>
     <fragment
         android:id="@+id/mainScreen"
         android:name="com.example.easyissue.MainScreen"
         android:label="main_screen_fragment"
         tools:layout="@layout/main_screen" >
-        <action
-            android:id="@+id/mainScreen_to_loginScreen"
-            app:destination="@id/loginScreen" />
     </fragment>
+
+    <!-- Global actions -->
+    <action
+        android:id="@+id/toLoginScreen"
+        app:destination="@id/loginScreen"
+        app:enterAnim="@anim/slide_up"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/loginScreen"
+        app:popUpToInclusive="true" />
+
+
 </navigation>

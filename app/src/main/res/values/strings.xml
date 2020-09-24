@@ -2,4 +2,6 @@
     <string name="app_name">easyIssue</string>
     <string name="main_title">YOUR PROJECTS</string>
     <string name="validate_token_btn">VALIDATE TOKEN</string>
+    <string name="your_token_title">YOUR TOKEN</string>
+    <string name="token_hint">TOKEN</string>
 </resources>
