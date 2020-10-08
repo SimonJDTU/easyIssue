@@ -6,9 +6,11 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 
 object GithubWebService {
+    //Creates client
+    private val client: Retrofit = RetrofitFactory().getClient(RetrofitType.GITHUB)
 
-    private val client: Retrofit = getGithubClient()
-    private val service: GithubProjectApi = client.buildService(GithubProjectApi::class.java)
+    //Builds service
+    private val service: GithubProjectApi = client.create(GithubProjectApi::class.java)
 
     fun getProjects(): Single<List<Projects>> {
         return service.getProjects()
@@ -29,5 +31,3 @@ object GithubWebService {
         fun getProjects(): Single<List<Projects>>
     }
 }
-
-

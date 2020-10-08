@@ -1,4 +1,4 @@
-package com.example.easyissue
+package com.example.easyissue.mainScreen
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel

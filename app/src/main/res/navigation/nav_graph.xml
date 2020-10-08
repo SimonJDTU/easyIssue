@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginScreen"
-        android:name="com.example.easyissue.LoginScreen"
+        android:name="com.example.easyissue.loginScreen.LoginScreen"
         android:label="fragment_login_screen"
         tools:layout="@layout/login_screen" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainScreen"
-        android:name="com.example.easyissue.MainScreen"
+        android:name="com.example.easyissue.mainScreen.MainScreen"
         android:label="main_screen_fragment"
         tools:layout="@layout/main_screen" >
     </fragment>

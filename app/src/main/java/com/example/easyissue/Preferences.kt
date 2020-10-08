@@ -5,12 +5,12 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 
 // Gist from: https://gist.github.com/JCarlosR/7f457aeebd9c3670933221e97116c4c6
-object PreferenceHelper {
+class PreferenceHelper(private val context: Context) {
 
-    fun defaultPrefs(context: Context): SharedPreferences
+    fun defaultPrefs(): SharedPreferences
             = PreferenceManager.getDefaultSharedPreferences(context)
 
-    fun customPrefs(context: Context, name: String): SharedPreferences
+    fun customPrefs(name: String): SharedPreferences
             = context.getSharedPreferences(name, Context.MODE_PRIVATE)
 
     private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
