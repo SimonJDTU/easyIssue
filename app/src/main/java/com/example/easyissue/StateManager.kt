@@ -1,11 +1,10 @@
 package com.example.easyissue
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 
-class StateManager(context: Context) {
-
-    private val token: String?= PreferenceHelper.defaultPrefs(context).getString("yeet",null)
+class StateManager {
+    //TODO: FIX
+    private val token: String?= ""
     var signInStateObservable: MutableLiveData<SignInState> = MutableLiveData(SignInState.Idle)
 
     init {

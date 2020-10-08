@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.easyissue.MainScreenViewModel" />
+            type="com.example.easyissue.mainScreen.MainScreenViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainScreen">
+        tools:context=".mainScreen.MainScreen">
 
         <TextView
             android:id="@+id/textView"

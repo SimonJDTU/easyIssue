@@ -1,9 +1,11 @@
-package com.example.easyissue
+package com.example.easyissue.loginScreen
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import com.example.easyissue.SignInState.*
-import com.example.easyissue.data.*
+import com.example.easyissue.SignInState.Fail
+import com.example.easyissue.SignInState.Success
+import com.example.easyissue.StateManager
+import com.example.easyissue.data.GithubWebService
 
 class LoginScreenViewModel : ViewModel() {
     val loginInfo: ObservableField<String> = ObservableField("")
