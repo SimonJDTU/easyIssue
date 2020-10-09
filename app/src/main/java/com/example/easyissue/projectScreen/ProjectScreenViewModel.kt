@@ -1,11 +1,13 @@
-package com.example.easyissue.mainScreen
+package com.example.easyissue.projectScreen
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.easyissue.data.GithubWebService
+import com.example.easyissue.data.Project
 
-class MainScreenViewModel : ViewModel() {
-    val projectInfo: ObservableField<String> = ObservableField("")
+class ProjectScreenViewModel : ViewModel() {
+    var fetchedProjects: MutableLiveData<List<Project>> = MutableLiveData(emptyList())
     var isLoading: ObservableField<Boolean> = ObservableField(false)
 
     init {
@@ -17,8 +19,7 @@ class MainScreenViewModel : ViewModel() {
             .doOnSubscribe{ isLoading.set(true) }
             .doFinally{ isLoading.set(false) }
             .subscribe { Projects ->
-                projectInfo.set(Projects.toString())
+                fetchedProjects.postValue(Projects)
             }
     }
-
 }

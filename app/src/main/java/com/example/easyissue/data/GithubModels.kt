@@ -3,7 +3,7 @@ package com.example.easyissue.data
 import androidx.annotation.Keep
 
 @Keep
-data class Projects(
+data class Project(
     val name: String,
     val hasIssues: Boolean,
     val id: Int,
@@ -12,7 +12,8 @@ data class Projects(
     val openIssuesCount: Int,
     val owner: Owner,
     val permissions: Permissions,
-    val `private`: Boolean
+    val `private`: Boolean,
+    val language: String?
 )
 
 @Keep
