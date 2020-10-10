@@ -21,9 +21,9 @@
     </fragment>
     <fragment
         android:id="@+id/mainScreen"
-        android:name="com.example.easyissue.mainScreen.MainScreen"
+        android:name="com.example.easyissue.projectScreen.ProjectScreen"
         android:label="main_screen_fragment"
-        tools:layout="@layout/main_screen" >
+        tools:layout="@layout/project_screen" >
     </fragment>
 
     <!-- Global actions -->

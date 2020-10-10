@@ -12,7 +12,7 @@ object GithubWebService {
     //Builds service
     private val service: GithubProjectApi = client.create(GithubProjectApi::class.java)
 
-    fun getProjects(): Single<List<Projects>> {
+    fun getProjects(): Single<List<Project>> {
         return service.getProjects()
             .subscribeOn(Schedulers.io())
     }
@@ -28,6 +28,6 @@ object GithubWebService {
         fun getUser(): Single<User>
 
         @GET("/user/repos")
-        fun getProjects(): Single<List<Projects>>
+        fun getProjects(): Single<List<Project>>
     }
 }
