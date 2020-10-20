@@ -4,4 +4,5 @@
     <string name="validate_token_btn">VALIDATE TOKEN</string>
     <string name="your_token_title">YOUR TOKEN</string>
     <string name="token_hint">TOKEN</string>
+    <string name="no_projects_found">No Projects Found</string>
 </resources>

@@ -3,23 +3,24 @@ package com.example.easyissue.projectScreen
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.easyissue.data.GithubWebService
 import com.example.easyissue.data.Project
 
 class ProjectScreenViewModel : ViewModel() {
     var fetchedProjects: MutableLiveData<List<Project>> = MutableLiveData(emptyList())
     var isLoading: ObservableField<Boolean> = ObservableField(false)
+    var showList: ObservableField<Boolean> = ObservableField(false)
+    var showPlaceholder: ObservableField<Boolean> = ObservableField(false)
+    var listState: MutableLiveData<ListState> = MutableLiveData(ListState.Alphabetical)
 
-    init {
-        getProjects()
+    fun sortList(type: Int){
+        when(type){
+            1 -> listState.value = ListState.Alphabetical
+            2 -> listState.value = ListState.LastEdited
+        }
     }
 
-    private fun getProjects() {
-        GithubWebService.getProjects()
-            .doOnSubscribe{ isLoading.set(true) }
-            .doFinally{ isLoading.set(false) }
-            .subscribe { Projects ->
-                fetchedProjects.postValue(Projects)
-            }
+    sealed class ListState{
+        object Alphabetical: ListState()
+        object LastEdited: ListState()
     }
 }

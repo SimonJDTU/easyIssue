@@ -2,63 +2,50 @@ package com.example.easyissue.projectScreen
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyissue.R
+import com.example.easyissue.ResourceContext
 import com.example.easyissue.data.Project
+import com.example.easyissue.databinding.CardProjectBinding
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class ProjectAdapter(private val data: List<Project>?, val context: Context) :
-    RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_project, parent, false)
-        return ProjectViewHolder(view)
+//https://medium.com/swlh/android-recyclerview-with-data-binding-and-coroutine-3192097a0496
+class ProjectAdapter: ListAdapter<Project,
+        ProjectAdapter.ProjectViewHolder> (Companion),
+    KoinComponent {
+
+    private val resourceHandler: ResourceContext by inject()
+
+    companion object: DiffUtil.ItemCallback<Project>() {
+        override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem === newItem
+        override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem.id == newItem.id
     }
 
-    override fun getItemCount(): Int {
-        return if (data.isNullOrEmpty()) {
-            return 0
-        } else {
-            data.size
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = CardProjectBinding.inflate(layoutInflater)
+
+        return ProjectViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
-        data?.get(position)?.let {
+        getItem(position).let {
 
-            holder.projectReference = it
+            holder.binding.projectName.text = it.name
 
-            holder.name.text = it.name
-
-            val projectTheme = ProjectPair(it.language, context)
-            holder.languageIcon.setBackgroundResource(projectTheme.languageIcon)
-            holder.background.background = projectTheme.backgroundColor
+            val projectTheme = ProjectPair(it.language, resourceHandler.context)
+            holder.binding.languageIcon.setBackgroundResource(projectTheme.languageIcon)
+            holder.binding.background.background = projectTheme.backgroundColor
         }
     }
 
-    class ProjectViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
-
-        lateinit var projectReference: Project
-        val languageIcon: ImageView = v.findViewById(R.id.languageIcon)
-        val name: TextView = v.findViewById(R.id.projectName)
-        val background: View = v.findViewById(R.id.background)
-
-        init {
-            v.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
-            val context = itemView.context
-            //fetch navController and pass object
-            Log.d("Recyclerview", "Clicked")
-        }
-    }
+    class ProjectViewHolder(val binding: CardProjectBinding) : RecyclerView.ViewHolder(binding.root)
 
     data class ProjectPair(val language: String?, private val context: Context) {
 

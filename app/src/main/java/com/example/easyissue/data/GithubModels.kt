@@ -1,6 +1,7 @@
 package com.example.easyissue.data
 
 import androidx.annotation.Keep
+import java.sql.Timestamp
 
 @Keep
 data class Project(
@@ -13,7 +14,8 @@ data class Project(
     val owner: Owner,
     val permissions: Permissions,
     val `private`: Boolean,
-    val language: String?
+    val language: String?,
+    val updatedAt: Timestamp
 )
 
 @Keep
