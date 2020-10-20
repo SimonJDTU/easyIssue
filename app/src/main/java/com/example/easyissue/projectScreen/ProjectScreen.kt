@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.easyissue.R
 import com.example.easyissue.data.GithubWebService
 import com.example.easyissue.databinding.ProjectScreenBinding
-import com.example.easyissue.projectScreen.ProjectScreenViewModel.ListState.Alphabetical
-import com.example.easyissue.projectScreen.ProjectScreenViewModel.ListState.LastEdited
 
 class ProjectScreen : Fragment() {
 
@@ -35,14 +33,16 @@ class ProjectScreen : Fragment() {
 
         binding.adapter = projectAdapter
 
-        viewModel.listState.observe(viewLifecycleOwner, Observer { listState ->
-            viewModel.fetchedProjects.value?.let {
-                when (listState) {
-                    Alphabetical -> viewModel.fetchedProjects.postValue(it.sortedBy { list -> list.name })
-                    LastEdited -> viewModel.fetchedProjects.postValue(it.sortedByDescending { list -> list.updatedAt })
+        binding.sortingGroup.setOnCheckedChangeListener { _, checkedId ->
+            val ref = viewModel.fetchedProjects
+            ref.value?.let {
+                when (checkedId) {
+                    R.id.created -> ref.postValue(it.sortedBy { list -> list.id })
+                    R.id.alphabetical -> ref.postValue(it.sortedBy { list -> list.name })
+                    R.id.lastEdited -> ref.postValue(it.sortedByDescending { list -> list.updatedAt})
                 }
             }
-        })
+        }
 
         //TODO: Implement using bindingAdapter "items"
         viewModel.fetchedProjects.observe(viewLifecycleOwner, Observer {

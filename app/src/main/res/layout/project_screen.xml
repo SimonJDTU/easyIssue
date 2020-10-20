@@ -50,17 +50,23 @@
             android:orientation="horizontal"
             android:gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:background="#dbeceb"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-            <RadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/created"
+                android:checked="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> viewModel.sortList(1)"/>
-            <RadioButton
+                android:layout_height="wrap_content" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/alphabetical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> viewModel.sortList(2)"/>
+                android:layout_height="wrap_content" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/lastEdited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
