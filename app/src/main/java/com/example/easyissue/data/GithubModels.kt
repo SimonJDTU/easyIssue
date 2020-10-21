@@ -13,7 +13,8 @@ data class Project(
     val owner: Owner,
     val permissions: Permissions,
     val `private`: Boolean,
-    val language: String?
+    val language: String?,
+    val updatedAt: String
 )
 
 @Keep

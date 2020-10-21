@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="gutterMargin">16dp</dimen>
-    <dimen name="questionmark_icon">@dimen/textHeader</dimen>
+    <dimen name="questionmark_icon">34dp</dimen>
+    <dimen name="project_card_spacing">10dp</dimen>
 
     <!-- Text -->
     <dimen name="textDisplay">42dp</dimen>
@@ -11,5 +12,6 @@
     <dimen name="textHeadline">22dp</dimen>
     <dimen name="textBody">14dp</dimen>
     <dimen name="textCaption">12dp</dimen>
+
 
 </resources>
