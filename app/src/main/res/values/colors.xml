@@ -3,10 +3,12 @@
   <color name="colorPrimary">#2F3136</color>
   <color name="colorPrimaryDark">#202225</color>
   <color name="colorAccent">@color/black</color>
+
   <color name="unavailable">#405352</color>
-  <color name="selectedAccent">#66E4FB</color>
+  <color name="selectedAccent">#B5DED8</color>
+  <color name="denial">#E0645C</color>
+
   <color name="white">#FFFFFF</color>
   <color name="black">#000000</color>
   <color name="transparent">#00000000</color>
-  <color name="dropShadow">#2f3136</color>
 </resources>
