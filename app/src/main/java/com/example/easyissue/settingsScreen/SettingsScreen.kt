@@ -8,18 +8,15 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.easyissue.PreferenceHelper
 import com.example.easyissue.PreferenceHelper.get
 import com.example.easyissue.PreferenceHelper.set
 import com.example.easyissue.R
 import com.example.easyissue.databinding.SettingsScreenBinding
-import org.koin.core.KoinComponent
 
-class SettingsScreen : Fragment(), KoinComponent {
+class SettingsScreen : Fragment() {
 
-    private lateinit var viewModel: SettingsScreenViewModel
     private lateinit var binding: SettingsScreenBinding
 
     override fun onCreateView(
@@ -30,10 +27,6 @@ class SettingsScreen : Fragment(), KoinComponent {
             inflater,
             R.layout.settings_screen, container, false
         )
-
-        viewModel = ViewModelProvider(this).get(SettingsScreenViewModel::class.java)
-
-        binding.viewModel = viewModel
 
         //Checks in radiogroup the preferences selection
         binding.sortingGroup.check(
