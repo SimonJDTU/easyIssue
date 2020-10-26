@@ -1,10 +1,13 @@
 package com.example.easyissue.loginScreen
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -42,29 +45,50 @@ class LoginScreen : Fragment(), KoinComponent {
         viewModel = ViewModelProvider(this).get(LoginScreenViewModel::class.java)
 
         binding.viewModel = viewModel
-        viewModel.stateManager = stateManager
 
         stateManager.userState.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is SignInState.Success -> {
+                is SignInState.ValidToken -> {
                     findNavController().navigate(R.id.loginScreen_to_projectScreen)
                 }
                 is SignInState.Fail -> {
-                    //TODO display error message
-                    Toast.makeText(requireContext(), "Sign in Failed", Toast.LENGTH_LONG).show()
+                    binding.tokenInputLayout.error = getString(R.string.error_invalid_token)
                 }
-                else -> Toast.makeText(requireContext(), "else in when hit", Toast.LENGTH_LONG)
-                    .show()
+                else -> {}
             }
         })
 
+        binding.tokenGuideBtn.setOnClickListener {
+            val boolean = viewModel.tokenGuide.get()
+            viewModel.tokenGuide.set(!boolean!!)
+        }
+
+        binding.tokenInput.addTextChangedListener{
+            binding.tokenInputLayout.error = null
+
+            it?.let{
+                if(it.length>=resources.getInteger(R.integer.MAX_TOKEN_LENGTH)){
+                    binding.tokenInput.apply {
+                        clearFocus()
+                        requireContext().hideKeyboard(this)
+                    }
+                }
+            }
+        }
+
         binding.loginBtn.setOnClickListener {
             val input = binding.tokenInput.text.toString()
-            if(validateInput(input)){
-                stateManager.validateToken(input)
-            }else{
-                //TODO: Snackbar?
-                Toast.makeText(requireContext(),"Password regex failed", Toast.LENGTH_LONG).show()
+
+            when {
+                input.length!=40 -> {
+                    binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Length")
+                }
+                !validateInput(input) -> {
+                    binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Format")
+                }
+                else -> {
+                    stateManager.validateToken(input)
+                }
             }
         }
 
@@ -76,5 +100,10 @@ class LoginScreen : Fragment(), KoinComponent {
         val pattern = Pattern.compile(PASSWORD_PATTERN)
 
         return pattern.matcher(input).matches()
+    }
+
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
