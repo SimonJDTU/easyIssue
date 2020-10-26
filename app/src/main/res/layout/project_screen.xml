@@ -38,55 +38,46 @@
             style="@style/Display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginTop="@dimen/gutterMargin"
             android:text="@string/main_title"
-            android:layout_margin="@dimen/gutterMargin"
+            app:layout_constraintEnd_toStartOf="@id/menuIcon"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <RadioGroup
-            android:id="@+id/sortingGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="#dbeceb"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/created"
-                android:checked="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/alphabetical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/lastEdited"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/projectList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="@dimen/gutterMargin"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/gutterMargin"
             android:layout_marginRight="@dimen/gutterMargin"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/gutterMargin"
-            android:visibility="@{viewModel.showList}"
+            android:paddingBottom="86dp"
+            android:visibility="@{!viewModel.isLoading}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             decoration="@{@dimen/project_card_spacing}"
             adapter="@{adapter}"
+            items="@{viewModel.fetchedProjects}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sortingGroup" />
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <ImageView
+            android:id="@+id/menuIcon"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:src="@drawable/ic_burger"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            android:focusable="true"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:id="@+id/listPlaceholder"
@@ -94,22 +85,23 @@
             android:layout_height="300dp"
             android:src="@drawable/ic_list_placeholder"
             android:visibility="@{viewModel.showPlaceholder}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/projectList"
+            app:layout_constraintStart_toStartOf="@id/projectList"
+            app:layout_constraintBottom_toBottomOf="@id/projectList"
+            app:layout_constraintEnd_toEndOf="@id/projectList"/>
 
         <TextView
+            android:id="@+id/textView"
+            style="@style/Title2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/Title2"
-            android:visibility="@{viewModel.showPlaceholder}"
-            android:text="@string/no_projects_found"
             android:gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@id/listPlaceholder"
+            android:text="@string/no_projects_found"
+            android:textColor="@color/denial"
+            android:visibility="@{viewModel.showPlaceholder}"
+            app:layout_constraintEnd_toEndOf="@id/listPlaceholder"
             app:layout_constraintStart_toStartOf="@id/listPlaceholder"
-            app:layout_constraintEnd_toEndOf="@id/listPlaceholder"/>
+            app:layout_constraintTop_toBottomOf="@id/listPlaceholder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -104,11 +104,10 @@
             tools:visibility="gone" />
 
         <Button
-            android:id="@+id/getUserBtn"
+            android:id="@+id/loginBtn"
             style="@style/standardButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()->viewModel.validateToken()}"
             android:text="@string/validate_token_btn"
             android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginEnd="@dimen/gutterMargin"

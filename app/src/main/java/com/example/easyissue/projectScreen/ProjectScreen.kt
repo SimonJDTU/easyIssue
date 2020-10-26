@@ -4,17 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.easyissue.PreferenceHelper
+import com.example.easyissue.PreferenceHelper.get
 import com.example.easyissue.R
+import com.example.easyissue.SignInState
+import com.example.easyissue.StateManager
 import com.example.easyissue.data.GithubWebService
+import com.example.easyissue.data.Project
 import com.example.easyissue.databinding.ProjectScreenBinding
+import org.koin.core.KoinComponent
+import org.koin.core.inject
+import timber.log.Timber
 
-class ProjectScreen : Fragment() {
+class ProjectScreen : Fragment(), KoinComponent {
 
     private lateinit var viewModel: ProjectScreenViewModel
+    private val prefs = PreferenceHelper
+    private val stateManager: StateManager by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,43 +40,74 @@ class ProjectScreen : Fragment() {
         viewModel = ViewModelProvider(this).get(ProjectScreenViewModel::class.java)
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val projectAdapter = ProjectAdapter()
 
         binding.adapter = projectAdapter
 
-        binding.sortingGroup.setOnCheckedChangeListener { _, checkedId ->
-            val ref = viewModel.fetchedProjects
-            ref.value?.let {
-                when (checkedId) {
-                    R.id.created -> ref.postValue(it.sortedBy { list -> list.id })
-                    R.id.alphabetical -> ref.postValue(it.sortedBy { list -> list.name })
-                    R.id.lastEdited -> ref.postValue(it.sortedByDescending { list -> list.updatedAt})
-                }
-            }
+        binding.menuIcon.setOnClickListener {
+            findNavController().navigate(R.id.projectScreen_to_settingsScreen)
         }
 
-        //TODO: Implement using bindingAdapter "items"
-        viewModel.fetchedProjects.observe(viewLifecycleOwner, Observer {
-            it.let(projectAdapter::submitList)
+        stateManager.userState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is SignInState.Success -> {
+                    fetchProjects()
+                }
+                is SignInState.Fail -> {
+                    findNavController().navigate(R.id.projectSceen_to_loginScreen)
+                }
+                else -> Toast.makeText(requireContext(), "else in when hit", Toast.LENGTH_LONG)
+                    .show()
+            }
         })
 
-        fetchProjects()
+        stateManager.validateToken()
 
         return binding.root
     }
 
     private fun fetchProjects() {
-        GithubWebService.getProjects()
-            .doOnSubscribe { viewModel.isLoading.set(true) }
-            .doFinally { viewModel.isLoading.set(false) }
-            /*.doOnError {
-                showPlaceholder.set(true)
-                showList.set(false)
-            }*/
-            .subscribe { data ->
-                viewModel.fetchedProjects.postValue(data)
-                viewModel.showList.set(true)
+        val token = prefs.customPrefs(
+            requireContext(),
+            resources.getString(R.string.prefs_login)
+        )["token", ""]
+
+        GithubWebService.getProjects(token)
+            .doOnSubscribe {
+                viewModel.apply {
+                    isLoading.set(true)
+                    showList.set(false)
+                }
+            }.doOnError {
+                viewModel.apply {
+                    isLoading.set(false)
+                    showPlaceholder.set(true)
+                }
+            }.doOnSuccess {
+                viewModel.apply {
+                    isLoading.set(false)
+                    showList.set(true)
+                }
+            }.subscribe { data, throwable ->
+                if (throwable == null) {
+                    viewModel.fetchedProjects.postValue(sortProjects(data))
+                } else {
+                    Timber.e(throwable.message.toString())
+                }
             }
+    }
+
+    private fun sortProjects(data: List<Project>): List<Project> {
+        return when (PreferenceHelper.customPrefs(
+            requireContext(),
+            resources.getString(R.string.prefs_settings)
+        )["projectSortType", ""]) {
+            "created" -> data.sortedBy { list -> list.id }
+            "alphabetical" -> data.sortedBy { list -> list.name }
+            "lastEdited" -> data.sortedByDescending { list -> list.updatedAt }
+            else -> data.sortedBy { list -> list.id }
+        }
     }
 }

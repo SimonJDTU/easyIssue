@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">easyIssue</string>
-    <string name="main_title">YOUR PROJECTS</string>
+
+    <!-- LoginPage -->
     <string name="validate_token_btn">VALIDATE TOKEN</string>
     <string name="your_token_title">YOUR TOKEN</string>
     <string name="token_hint">TOKEN</string>
     <string name="no_projects_found">No Projects Found</string>
+
+    <string name="settings_title">SETTINGS</string>
+    <string name="sortType">Project Sorting</string>
+    <string name="log_out_btn">LOG OUT</string>
+
+    <string name="main_title">YOUR PROJECTS</string>
+
+    <string name="prefs_settings">settings</string>
+    <string name="prefs_login">login</string>
 </resources>

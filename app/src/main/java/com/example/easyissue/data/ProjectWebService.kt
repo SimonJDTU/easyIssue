@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 object GithubWebService {
@@ -13,22 +14,28 @@ object GithubWebService {
     //Builds service
     private val service: GithubProjectApi = client.create(GithubProjectApi::class.java)
 
-    fun getProjects(): Single<List<Project>> {
-        return service.getProjects("created", "internal")
+    fun getProjects(token: String): Single<List<Project>> {
+        return service.getProjects("Bearer $token","created", "internal")
             .subscribeOn(Schedulers.io())
     }
 
-    fun getUser(): Single<User>{
-        return service.getUser()
+    fun getUser(token: String): Single<User>{
+        return service.getUser("Bearer $token")
             .subscribeOn(Schedulers.io())
     }
 
     interface GithubProjectApi {
 
         @GET("/user")
-        fun getUser(): Single<User>
+        fun getUser(
+            @Header("Authorization") token: String
+        ): Single<User>
 
         @GET("/user/repos")
-        fun getProjects(@Query("sort") sortType: String, @Query("type") type: String): Single<List<Project>>
+        fun getProjects(
+            @Header("Authorization") token: String,
+            @Query("sort") sortType: String,
+            @Query("type") type: String
+        ): Single<List<Project>>
     }
 }

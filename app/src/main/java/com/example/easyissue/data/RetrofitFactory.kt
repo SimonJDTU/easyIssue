@@ -27,16 +27,7 @@ class RetrofitFactory: KoinComponent {
     }
 
     private val okHttpClient: OkHttpClient by lazy {
-        OkHttpClient.Builder().addInterceptor { chain ->
-            val requestWithUserAgent = chain.request().newBuilder()
-                //TODO: Dont push this
-                .header(
-                    "Authorization",
-                    "Bearer" + " " + "token"
-                )
-                .build()
-            chain.proceed(requestWithUserAgent)
-        }.build()
+        OkHttpClient.Builder().build()
     }
 }
 

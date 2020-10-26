@@ -4,8 +4,8 @@ import android.content.Context
 import org.koin.dsl.module
 
 val appModule = module {
-    single { PreferenceHelper( get() ) }
     single { ResourceContext( get() ) }
+    single { StateManager( get() ) }
 }
 
 data class ResourceContext(val context: Context)
