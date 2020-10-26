@@ -22,10 +22,10 @@ class StateManager(val context: Context) {
             .subscribe {_, throwable ->
                 if(throwable == null){
                     prefs.customPrefs(context, context.resources.getString(R.string.prefs_login))["token"] = token
-                    userState.postValue(SignInState.Success)
+                    userState.postValue(SignInState.ValidToken)
                 }else{
                     prefs.customPrefs(context,context.resources.getString(R.string.prefs_login))["token"] = null
-                    userState.postValue( SignInState.Fail(throwable.message.toString()) )
+                    userState.postValue( SignInState.InvalidToken(throwable.message.toString()) )
                 }
             }
     }
@@ -39,6 +39,7 @@ User states which determines actions from observers:
  */
 sealed class SignInState {
     object Idle : SignInState()
-    object Success : SignInState()
+    object ValidToken : SignInState()
+    data class InvalidToken(val errorMsg: String) : SignInState()
     data class Fail(val errorMsg: String) : SignInState()
 }

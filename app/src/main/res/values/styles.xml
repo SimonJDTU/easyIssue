@@ -13,8 +13,6 @@
     <item name="android:background">@drawable/inputfield_shape</item>
     <item name="android:backgroundTint">@color/white</item>
     <item name="android:textAlignment">center</item>
-    <item name="android:layout_marginStart">@dimen/gutterMargin</item>
-    <item name="android:layout_marginEnd">@dimen/gutterMargin</item>
   </style>
 
   <style name="standardButton" parent="TextAppearance.AppCompat.Button">
@@ -58,6 +56,12 @@
   <style name="Body" parent="StandardText"> <!-- Standard descriptions -->
     <item name="android:textSize">@dimen/textBody</item>
     <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="Body_BulletPoint" parent="Body"> <!-- Standard descriptions - Bullet point -->
+    <item name="android:textSize">@dimen/textBody</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+    <item name="android:lineSpacingMultiplier">1.2</item>
   </style>
 
   <style name="Caption" parent="StandardText"> <!-- Time stamps, footers -->

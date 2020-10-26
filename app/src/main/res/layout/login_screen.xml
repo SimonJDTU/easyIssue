@@ -42,16 +42,29 @@
                 android:src="@mipmap/logo" />
         </FrameLayout>
 
-        <EditText
-            android:id="@+id/tokenInput"
-            style="@style/tokenInputField"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tokenInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="@string/token_hint"
-            android:maxLines="2"
+            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginEnd="@dimen/gutterMargin"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/denial"
+            app:counterEnabled="true"
+            app:counterTextColor="@color/white"
+            app:counterMaxLength="@integer/MAX_TOKEN_LENGTH"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logoContainer" />
+            app:layout_constraintTop_toBottomOf="@id/logoContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tokenInput"
+                style="@style/tokenInputField"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:maxLength="@integer/MAX_TOKEN_LENGTH" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tokenTitle"
@@ -59,12 +72,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/your_token_title"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="@id/tokenInput"
-            app:layout_constraintTop_toBottomOf="@id/tokenInput" />
+            app:layout_constraintStart_toStartOf="@id/tokenInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/tokenInputLayout" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/tokenGuideBtn"
             android:layout_width="@dimen/questionmark_icon"
             android:layout_height="@dimen/questionmark_icon"
             android:background="@color/transparent"
@@ -75,19 +87,16 @@
             app:layout_constraintStart_toEndOf="@id/tokenTitle"
             app:layout_constraintTop_toTopOf="@id/tokenTitle" />
 
-        <!-- tODO: Delete -->
         <TextView
-            android:id="@+id/loginInfo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="40dp"
-            android:text="@{viewModel.loginInfo}"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tokenTitle" />
+            android:id="@+id/tokenGuide"
+            style="@style/Body_BulletPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/gutterMargin"
+            android:text="@string/tokenGuide"
+            android:visibility="@{viewModel.tokenGuide}"
+            app:layout_constraintBottom_toTopOf="@id/loginBtn"
+            app:layout_constraintStart_toStartOf="@id/loginBtn" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
@@ -108,10 +117,8 @@
             style="@style/standardButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gutterMargin"
             android:text="@string/validate_token_btn"
-            android:layout_marginStart="@dimen/gutterMargin"
-            android:layout_marginEnd="@dimen/gutterMargin"
-            android:layout_marginBottom="@dimen/gutterMargin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

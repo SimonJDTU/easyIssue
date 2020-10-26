@@ -1,18 +1,31 @@
 <resources>
     <string name="app_name">easyIssue</string>
 
-    <!-- LoginPage -->
+    <!-- Login Page -->
     <string name="validate_token_btn">VALIDATE TOKEN</string>
     <string name="your_token_title">YOUR TOKEN</string>
     <string name="token_hint">TOKEN</string>
+    <string name="tokenGuide">1.   Log in to your Github account
+        \n2.   Navigate to settings
+        \n3.   Open developer settings
+        \n4.   Navigate to "Personal access token"
+        \n5.   Add a token description and click Generate token
+        \n6.   Copy the token to the input field above
+    </string>
+    <string name="error_bad_token">Bad Token %s</string>
+    <string name="error_invalid_token">Invalid Token</string>
+
+    <!-- Projects Page -->
     <string name="no_projects_found">No Projects Found</string>
 
+    <!-- Settings Page -->
     <string name="settings_title">SETTINGS</string>
     <string name="sortType">Project Sorting</string>
     <string name="log_out_btn">LOG OUT</string>
 
     <string name="main_title">YOUR PROJECTS</string>
 
+    <!-- Preferences -->
     <string name="prefs_settings">settings</string>
     <string name="prefs_login">login</string>
 </resources>
