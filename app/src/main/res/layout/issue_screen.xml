@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.easyissue.issueScreen.IssueViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        tools:context=".issueScreen.IssueScreen">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/closeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow"
+            android:layout_marginTop="@dimen/gutterMargin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Headline"
+            android:text="@string/issue_title"
+            app:layout_constraintStart_toStartOf="@id/titleInputLayout"
+            app:layout_constraintBottom_toTopOf="@id/titleInputLayout"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginEnd="@dimen/gutterMargin"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/denial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/closeBtn">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleInput"
+                style="@style/tokenInputField"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:maxLength="@integer/MAX_TOKEN_LENGTH" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Headline"
+            android:text="@string/issue_body"
+            app:layout_constraintStart_toStartOf="@id/bodyInputLayout"
+            app:layout_constraintBottom_toTopOf="@id/bodyInputLayout"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bodyInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginEnd="@dimen/gutterMargin"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/denial"
+            app:layout_constraintStart_toStartOf="@id/titleInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/titleInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bodyInput"
+                style="@style/tokenInputField"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:gravity="center"
+                android:maxLength="@integer/MAX_TOKEN_LENGTH" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Headline"
+            android:text="@string/issue_label"
+            app:layout_constraintStart_toStartOf="@id/lableInputLayout"
+            app:layout_constraintBottom_toTopOf="@id/lableInputLayout"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lableInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginEnd="@dimen/gutterMargin"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/denial"
+            app:layout_constraintStart_toStartOf="@id/bodyInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/bodyInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lableInput"
+                style="@style/tokenInputField"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:maxLength="@integer/MAX_TOKEN_LENGTH" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginBtn"
+            style="@style/standardButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gutterMargin"
+            android:text="@string/issue_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,7 +1,6 @@
 package com.example.easyissue.projectScreen
 
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyissue.data.Project
 
@@ -19,12 +18,8 @@ fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("items")
-fun setItems(view: RecyclerView, data: MutableLiveData<List<Project>>) {
-    (view.adapter as ProjectAdapter).let {
-        it.submitList(data.value)
-        it.notifyDataSetChanged()
+fun setItems(view: RecyclerView, data: List<Project>) {
+    (view.adapter as ProjectAdapter).apply {
+        submitList(data)
     }
 }
-
-
-
