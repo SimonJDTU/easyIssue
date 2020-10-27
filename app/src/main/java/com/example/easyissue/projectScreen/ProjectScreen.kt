@@ -21,7 +21,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import timber.log.Timber
 
-class ProjectScreen : Fragment(), KoinComponent {
+class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListener {
 
     private lateinit var viewModel: ProjectScreenViewModel
     private val prefs = PreferenceHelper
@@ -41,7 +41,7 @@ class ProjectScreen : Fragment(), KoinComponent {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val projectAdapter = ProjectAdapter()
+        val projectAdapter = ProjectAdapter(this)
 
         binding.adapter = projectAdapter
 
@@ -107,5 +107,10 @@ class ProjectScreen : Fragment(), KoinComponent {
             "lastEdited" -> data.sortedByDescending { list -> list.updatedAt }
             else -> data.sortedBy { list -> list.id }
         }
+    }
+
+    override fun onItemClick(item: Project) {
+        val action = ProjectScreenDirections.projectScreenToIssueScreen(item)
+        findNavController().navigate(action)
     }
 }

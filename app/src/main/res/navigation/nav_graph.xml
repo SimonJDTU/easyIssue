@@ -9,7 +9,7 @@
         android:id="@+id/loginScreen"
         android:name="com.example.easyissue.loginScreen.LoginScreen"
         android:label="fragment_login_screen"
-        tools:layout="@layout/login_screen" >
+        tools:layout="@layout/login_screen">
         <action
             android:id="@+id/loginScreen_to_projectScreen"
             app:destination="@id/projectScreen"
@@ -22,12 +22,12 @@
         android:id="@+id/projectScreen"
         android:name="com.example.easyissue.projectScreen.ProjectScreen"
         android:label="project_screen_fragment"
-        tools:layout="@layout/project_screen" >
+        tools:layout="@layout/project_screen">
         <action
             android:id="@+id/projectScreen_to_settingsScreen"
+            app:destination="@id/settingsScreen"
             app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/stay"
-            app:destination="@id/settingsScreen" />
+            app:exitAnim="@anim/stay" />
         <action
             android:id="@+id/projectSceen_to_loginScreen"
             app:destination="@id/loginScreen"
@@ -36,14 +36,28 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/loginScreen"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/projectScreen_to_issueScreen"
+            app:destination="@id/issueScreen"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/stay" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/issueScreen"
+        android:name="com.example.easyissue.issueScreen.IssueScreen"
+        android:label="IssueScreen"
+        tools:layout="@layout/issue_screen">
+        <argument
+            android:name="projectItem"
+            app:argType="com.example.easyissue.data.Project" />
     </fragment>
 
     <fragment
         android:id="@+id/settingsScreen"
         android:name="com.example.easyissue.settingsScreen.SettingsScreen"
         android:label="settings_screen_fragment"
-        tools:layout="@layout/settings_screen" >
-    </fragment>
+        tools:layout="@layout/settings_screen"></fragment>
 
     <!-- Global actions -->
     <action
@@ -53,5 +67,6 @@
         app:launchSingleTop="true"
         app:popUpTo="@id/loginScreen"
         app:popUpToInclusive="true" />
+
 
 </navigation>

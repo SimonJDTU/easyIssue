@@ -1,8 +1,11 @@
 package com.example.easyissue.data
 
+import android.os.Parcelable
 import androidx.annotation.Keep
+import kotlinx.android.parcel.Parcelize
 
 @Keep
+@Parcelize
 data class Project(
     val name: String,
     val hasIssues: Boolean,
@@ -15,19 +18,21 @@ data class Project(
     val `private`: Boolean,
     val language: String?,
     val updatedAt: String
-)
+) : Parcelable
 
 @Keep
+@Parcelize
 data class Permissions(
     val admin: Boolean,
     val pull: Boolean,
     val push: Boolean
-)
+)  : Parcelable
 
 @Keep
+@Parcelize
 data class Owner(
     val avatarUrl: String,
     val login : String,
     val id: Int,
     val url: String
-)
+)  : Parcelable
