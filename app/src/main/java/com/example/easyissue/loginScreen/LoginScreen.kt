@@ -17,10 +17,8 @@ import com.example.easyissue.R
 import com.example.easyissue.SignInState
 import com.example.easyissue.StateManager
 import com.example.easyissue.databinding.LoginScreenBinding
-import io.reactivex.plugins.RxJavaPlugins
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import timber.log.Timber
 import java.util.regex.Pattern
 
 
@@ -28,10 +26,6 @@ class LoginScreen : Fragment(), KoinComponent {
 
     private lateinit var viewModel: LoginScreenViewModel
     private val stateManager: StateManager by inject()
-
-    init {
-        RxJavaPlugins.setErrorHandler(Timber::e)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

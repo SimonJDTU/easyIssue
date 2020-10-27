@@ -25,6 +25,12 @@
 
     <string name="main_title">YOUR PROJECTS</string>
 
+    <!-- Issues Page -->
+    <string name="issue_title">THE TITLE</string>
+    <string name="issue_body">THE BODY</string>
+    <string name="issue_label">THE LABELS</string>
+    <string name="issue_btn">SEND THE ISSUE</string>
+
     <!-- Preferences -->
     <string name="prefs_settings">settings</string>
     <string name="prefs_login">login</string>

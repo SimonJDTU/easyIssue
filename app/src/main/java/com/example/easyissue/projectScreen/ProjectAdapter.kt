@@ -16,15 +16,18 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 //https://medium.com/swlh/android-recyclerview-with-data-binding-and-coroutine-3192097a0496
-class ProjectAdapter: ListAdapter<Project,
-        ProjectAdapter.ProjectViewHolder> (Companion),
+class ProjectAdapter : ListAdapter<Project,
+        ProjectAdapter.ProjectViewHolder>(Companion),
     KoinComponent {
 
     private val resourceHandler: ResourceContext by inject()
 
-    companion object: DiffUtil.ItemCallback<Project>() {
-        override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem === newItem
-        override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem.id == newItem.id
+    companion object : DiffUtil.ItemCallback<Project>() {
+        override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean =
+            oldItem === newItem
+
+        override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean =
+            oldItem.id == newItem.id
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
@@ -36,12 +39,13 @@ class ProjectAdapter: ListAdapter<Project,
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
         getItem(position).let {
-
-            holder.binding.projectName.text = it.name
-
             val projectTheme = ProjectPair(it.language, resourceHandler.context)
-            holder.binding.languageIcon.setBackgroundResource(projectTheme.languageIcon)
-            holder.binding.background.background = projectTheme.backgroundColor
+
+            holder.binding.apply {
+                projectName.text = it.name
+                languageIcon.setBackgroundResource(projectTheme.languageIcon)
+                background.background = projectTheme.backgroundColor
+            }
         }
     }
 
