@@ -2,13 +2,9 @@ package com.example.easyissue
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 
 // Gist from: https://gist.github.com/JCarlosR/7f457aeebd9c3670933221e97116c4c6
 object PreferenceHelper {
-
-    fun defaultPrefs(context: Context): SharedPreferences
-            = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun customPrefs(context: Context, name: String): SharedPreferences
             = context.getSharedPreferences(name, Context.MODE_PRIVATE)

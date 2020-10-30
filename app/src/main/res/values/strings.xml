@@ -15,15 +15,29 @@
     <string name="error_bad_token">Bad Token %s</string>
     <string name="error_invalid_token">Invalid Token</string>
 
+    <!-- Project Adapter-->
+    <string name="card_language">Language: %s</string>
+    <string name="card_owner">Owner: %s</string>
+
     <!-- Projects Page -->
+    <string name="projects_title">YOUR PROJECTS</string>
     <string name="no_projects_found">No Projects Found</string>
 
     <!-- Settings Page -->
     <string name="settings_title">SETTINGS</string>
     <string name="sortType">Project Sorting</string>
+    <string name="spanType">Project List Columns</string>
     <string name="log_out_btn">LOG OUT</string>
-
-    <string name="main_title">YOUR PROJECTS</string>
+    <string name="created">Created</string>
+    <string name="alphabetical">Alphabetical</string>
+    <string name="lastEdited">Last Edited</string>
+    <array name="sortTypes">
+        <item>@string/created</item>
+        <item>@string/alphabetical</item>
+        <item>@string/lastEdited</item>
+    </array>
+    <string name="single_span">1 Column</string>
+    <string name="double_span">2 Columns</string>
 
     <!-- Issues Page -->
     <string name="issue_title">THE TITLE</string>
@@ -34,4 +48,5 @@
     <!-- Preferences -->
     <string name="prefs_settings">settings</string>
     <string name="prefs_login">login</string>
+
 </resources>

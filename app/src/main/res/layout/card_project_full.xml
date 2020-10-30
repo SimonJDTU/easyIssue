@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/transparent"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    tools:backgroundTint="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fullBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/unit4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/fullName"
+            style="@style/Headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            tools:layout_editor_absoluteY="24dp"
+            tools:text="PROJECT_NAME_DISPLAY" />
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginEnd="@dimen/unit"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="@id/languageIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/languageIcon"
+            app:layout_constraintTop_toTopOf="@id/languageIcon"/>
+
+        <TextView
+            android:id="@+id/fullLanguage"
+            style="@style/Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/gutterMargin"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="@+id/divider"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:layout_editor_absoluteY="24dp"
+            tools:text="PROJECT_LANGUAGE_DISPLAY"
+            tools:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/fullOwner"
+            style="@style/Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/gutterMargin"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/fullLanguage"
+            app:layout_constraintStart_toStartOf="@+id/fullLanguage"
+            app:layout_constraintTop_toBottomOf="@id/fullLanguage"
+            tools:layout_editor_absoluteY="24dp"
+            tools:text="PROJECT_OWNER_DISPLAY"
+            tools:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/languageIcon"
+            android:layout_width="@dimen/unit2"
+            android:layout_height="@dimen/unit2"
+            android:layout_margin="@dimen/unit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_kotlin" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

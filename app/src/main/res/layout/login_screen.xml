@@ -26,9 +26,9 @@
 
         <FrameLayout
             android:id="@+id/logoContainer"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="64dp"
+            android:layout_width="@dimen/unit7"
+            android:layout_height="@dimen/unit7"
+            android:layout_marginTop="@dimen/unit2"
             android:background="@drawable/icon_shape"
             android:backgroundTint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/unit"
                 android:src="@mipmap/logo" />
         </FrameLayout>
 
@@ -46,11 +46,11 @@
             android:id="@+id/tokenInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/unit"
             android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginEnd="@dimen/gutterMargin"
+            app:hintEnabled="false"
             app:errorEnabled="true"
-            app:errorTextColor="@color/denial"
             app:counterEnabled="true"
             app:counterTextColor="@color/white"
             app:counterMaxLength="@integer/MAX_TOKEN_LENGTH"
@@ -59,10 +59,12 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tokenInput"
-                style="@style/tokenInputField"
+                style="@style/Headline"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
                 android:maxLength="@integer/MAX_TOKEN_LENGTH" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,12 +92,13 @@
         <TextView
             android:id="@+id/tokenGuide"
             style="@style/Body_BulletPoint"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/gutterMargin"
             android:text="@string/tokenGuide"
             android:visibility="@{viewModel.tokenGuide}"
             app:layout_constraintBottom_toTopOf="@id/loginBtn"
+            app:layout_constraintEnd_toEndOf="@+id/loginBtn"
             app:layout_constraintStart_toStartOf="@id/loginBtn" />
 
         <com.airbnb.lottie.LottieAnimationView
@@ -114,10 +117,7 @@
 
         <Button
             android:id="@+id/loginBtn"
-            style="@style/standardButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/gutterMargin"
+            style="@style/Button"
             android:text="@string/validate_token_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

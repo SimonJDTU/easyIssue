@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="unit_quarter">5.5dp</dimen>
+    <dimen name="unit_half">11dp</dimen>
+    <dimen name="unit">22dp</dimen>
+    <dimen name="unit2">44dp</dimen>
+    <dimen name="unit2_5">55dp</dimen>
+    <dimen name="unit3">66dp</dimen>
+    <dimen name="unit4">88dp</dimen>
+    <dimen name="unit5">110dp</dimen>
+    <dimen name="unit6">132dp</dimen>
+    <dimen name="unit7">154dp</dimen>
+    <dimen name="unit8">176dp</dimen>
+    <dimen name="unit9">198dp</dimen>
+    <dimen name="unit10">220dp</dimen>
+
+    <dimen name="gutterMargin">@dimen/unit</dimen>
+    <dimen name="questionmark_icon">@dimen/unit2</dimen>
+    <dimen name="project_card_spacing">@dimen/unit_half</dimen>
+
+    <!-- Text -->
+    <dimen name="textDisplay">42dp</dimen>
+    <dimen name="textHeader">34dp</dimen>
+    <dimen name="textTitle1">29sp</dimen>
+    <dimen name="textTitle2">22dp</dimen>
+    <dimen name="textHeadline">22dp</dimen>
+    <dimen name="textBody">14dp</dimen>
+    <dimen name="textCaption">12dp</dimen>
+
+</resources>
