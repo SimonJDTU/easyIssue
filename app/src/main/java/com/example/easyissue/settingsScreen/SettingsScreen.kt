@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.example.easyissue.PreferenceHelper.get
 import com.example.easyissue.PreferenceHelper.set
 import com.example.easyissue.R
 import com.example.easyissue.databinding.SettingsScreenBinding
+
 
 class SettingsScreen : Fragment() {
 
@@ -28,31 +30,68 @@ class SettingsScreen : Fragment() {
             R.layout.settings_screen, container, false
         )
 
-        //Checks in radiogroup the preferences selection
-        binding.sortingGroup.check(
-            when (PreferenceHelper.customPrefs(
-                requireContext(),
-                resources.getString(R.string.prefs_settings)
-            )["projectSortType", ""]) {
-                "created" -> R.id.created
-                "alphabetical" -> R.id.alphabetical
-                "lastEdited" -> R.id.lastEdited
-                else -> R.id.created
-            }
-        )
+        binding.filledExposedDropdown.apply {
 
-        binding.sortingGroup.setOnCheckedChangeListener { _, checkedId ->
-            var value: String? = null
-            when (checkedId) {
-                R.id.created -> value = "created"
-                R.id.alphabetical -> value = "alphabetical"
-                R.id.lastEdited -> value = "lastEdited"
+            val adapter = ArrayAdapter(
+                requireContext(),
+                R.layout.dropdown_menu_popup_item,
+                resources.getTextArray(R.array.sortTypes)
+            )
+
+            setAdapter(adapter)
+
+            setText(
+                resources.getString(
+                    when (PreferenceHelper.customPrefs(
+                        requireContext(),
+                        resources.getString(R.string.prefs_settings)
+                    )["projectSortType", ""]) {
+                        "created" -> R.string.created
+                        "alphabetical" -> R.string.alphabetical
+                        "lastEdited" -> R.string.lastEdited
+                        else -> R.string.created
+                    }
+                ), false
+            )
+
+            setOnItemClickListener { _, _, position, _ ->
+                PreferenceHelper.customPrefs(
+                    requireContext(),
+                    resources.getString(R.string.prefs_settings)
+                )["projectSortType"] =
+                    when (position) {
+                        0 -> "created"
+                        1 -> "alphabetical"
+                        2 -> "lastEdited"
+                        else -> "created"
+                    }
             }
-            PreferenceHelper.customPrefs(
+        }
+
+        binding.spanGroup.apply {
+
+            check(when(PreferenceHelper.customPrefs(
                 requireContext(),
                 resources.getString(R.string.prefs_settings)
-            )["projectSortType"] = value
+            )["isSingleSpan", true]){
+                true -> R.id.span1
+                false -> R.id.span2
+            })
+
+            setOnCheckedChangeListener { _, checkedId ->
+                var value: Boolean? = null
+                when (checkedId) {
+                    R.id.span1 -> value = true
+                    R.id.span2 -> value = false
+                }
+                PreferenceHelper.customPrefs(
+                    requireContext(),
+                    resources.getString(R.string.prefs_settings)
+                )["isSingleSpan"] = value
+
+            }
         }
+
 
         //TODO: Implement dialog
         binding.logoutBtn.setOnClickListener {
@@ -63,7 +102,7 @@ class SettingsScreen : Fragment() {
 
             findNavController().popBackStack()
         }
-        
+
         binding.closeBtn.setOnClickListener {
             findNavController().popBackStack()
         }

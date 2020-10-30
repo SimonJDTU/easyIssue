@@ -19,14 +19,11 @@
 
         <ImageView
             android:id="@+id/closeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:src="@drawable/ic_arrow"
+            style="@style/closeBtn"
             android:layout_marginTop="@dimen/gutterMargin"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
@@ -37,66 +34,103 @@
             android:layout_marginTop="@dimen/gutterMargin"
             android:text="@string/settings_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/closeBtn"/>
+            app:layout_constraintTop_toBottomOf="@id/closeBtn" />
 
-        <TextView
-            android:id="@+id/sortType"
-            style="@style/Title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/gutterMargin"
-            android:text="@string/sortType"
-            app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@id/title" />
-
-        <RadioGroup
-            android:id="@+id/sortingGroup"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="@dimen/gutterMargin"
-            android:layout_marginStart="@dimen/gutterMargin"
-            android:layout_marginEnd="@dimen/gutterMargin"
-            app:layout_constraintTop_toBottomOf="@id/sortType"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/logoutBtn"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/created"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/gutterMargin"
-                android:layout_marginEnd="@dimen/gutterMargin"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/alphabetical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/gutterMargin"
-                android:layout_marginEnd="@dimen/gutterMargin"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/lastEdited"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/gutterMargin"
-                android:layout_marginEnd="@dimen/gutterMargin"/>
-        </RadioGroup>
+            app:layout_constraintTop_toBottomOf="@id/title">
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <Button
+                <TextView
+                    android:id="@+id/sortType"
+                    style="@style/Title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gutterMargin"
+                    android:layout_marginTop="@dimen/gutterMargin"
+                    android:text="@string/sortType"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/unit"
+                    app:endIconTint="@color/black"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/white"
+                    android:hint="HINT">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/filled_exposed_dropdown"
+                        style="@style/Headline"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/black"
+                        android:focusable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Alphabetical"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/spanType"
+                    style="@style/Title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gutterMargin"
+                    android:layout_marginTop="@dimen/gutterMargin"
+                    android:text="@string/sortType"
+                    app:layout_constraintStart_toStartOf="@+id/sortingGroup"
+                    app:layout_constraintTop_toBottomOf="@id/sortingGroup" />
+
+                <RadioGroup
+                    android:id="@+id/spanGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/gutterMargin"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spanType">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/span1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/gutterMargin"
+                        android:layout_marginEnd="@dimen/gutterMargin"
+                        android:layout_weight="1"
+                        android:text="@string/single_span" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/span2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/gutterMargin"
+                        android:layout_marginEnd="@dimen/gutterMargin"
+                        android:layout_weight="1"
+                        android:text="@string/double_span" />
+                </RadioGroup>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/logoutBtn"
-            style="@style/standardButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/Button"
             android:text="@string/log_out_btn"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="@dimen/gutterMargin"
-            android:layout_marginEnd="@dimen/gutterMargin"
-            android:layout_marginBottom="@dimen/gutterMargin"/>
-
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

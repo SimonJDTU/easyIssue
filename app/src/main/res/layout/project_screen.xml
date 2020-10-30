@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginTop="@dimen/gutterMargin"
-            android:text="@string/main_title"
+            android:text="@string/projects_title"
             app:layout_constraintEnd_toStartOf="@id/menuIcon"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,20 +51,26 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="@dimen/gutterMargin"
-            android:layout_marginTop="@dimen/gutterMargin"
             android:layout_marginRight="@dimen/gutterMargin"
             android:clipToPadding="false"
-            android:paddingBottom="86dp"
+            android:paddingTop="@dimen/unit"
+            android:paddingBottom="@dimen/unit5"
             android:visibility="@{!viewModel.isLoading}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            decoration="@{@dimen/project_card_spacing}"
             adapter="@{adapter}"
             items="@{viewModel.fetchedProjects}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <FrameLayout
+            android:id="@+id/projectGradient"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/unit"
+            android:background="@drawable/gradient_projects"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
             android:id="@+id/menuIcon"

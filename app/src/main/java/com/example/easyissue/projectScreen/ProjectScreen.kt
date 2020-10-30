@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.easyissue.PreferenceHelper
 import com.example.easyissue.PreferenceHelper.get
 import com.example.easyissue.R
@@ -41,7 +42,14 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val projectAdapter = ProjectAdapter(this)
+        val isSingleSpan: Boolean = prefs.customPrefs(
+            requireContext(),
+            resources.getString(R.string.prefs_settings)
+        )["isSingleSpan", true]
+
+        binding.projectList.layoutManager = GridLayoutManager(requireContext(), if(isSingleSpan) 1 else 2)
+
+        val projectAdapter = ProjectAdapter(this, isSingleSpan, resources)
 
         binding.adapter = projectAdapter
 
