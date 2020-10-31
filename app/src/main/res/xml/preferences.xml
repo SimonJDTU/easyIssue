@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="projectSpan"
+        app:title="Double Coloumn for Projects" />
+
+    <Preference
+        app:key="feedback"
+        app:summary="Report technical issues or suggest new features"
+        app:title="Send feedback" />
+
+    <EditTextPreference
+        app:dependency="projectSpan"
+        app:key="test"
+        app:title="Test"
+        app:useSimpleSummaryProvider="true" />
+
+    <PreferenceCategory
+        app:key="info"
+        app:title="Info">
+        <Preference
+            app:key="version"
+            app:summary="1.2.345"
+            app:title="Build version" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:key="info">
+        <Preference
+            android:key="logoutBtn"
+            app:summary="Click here to log out"
+            app:title="Log Out" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

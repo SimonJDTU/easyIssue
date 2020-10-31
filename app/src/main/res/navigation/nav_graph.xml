@@ -13,7 +13,8 @@
         <action
             android:id="@+id/loginScreen_to_projectScreen"
             app:destination="@id/projectScreen"
-            app:exitAnim="@anim/slide_down"
+            app:enterAnim="@anim/fade_enter"
+            app:exitAnim="@anim/fade_exit"
             app:launchSingleTop="true"
             app:popUpTo="@id/loginScreen"
             app:popUpToInclusive="true" />
@@ -25,22 +26,22 @@
         tools:layout="@layout/project_screen">
         <action
             android:id="@+id/projectScreen_to_settingsScreen"
-            app:destination="@id/settingsScreen"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/stay" />
+            app:destination="@id/mySettingsFragment"
+            app:enterAnim="@anim/fade_enter"
+            app:exitAnim="@anim/fade_exit" />
         <action
             android:id="@+id/projectSceen_to_loginScreen"
             app:destination="@id/loginScreen"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/stay"
+            app:enterAnim="@anim/fade_enter"
+            app:exitAnim="@anim/fade_exit"
             app:launchSingleTop="true"
             app:popUpTo="@id/loginScreen"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/projectScreen_to_issueScreen"
             app:destination="@id/issueScreen"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/stay" />
+            app:enterAnim="@anim/fade_enter"
+            app:exitAnim="@anim/fade_exit" />
     </fragment>
 
     <fragment
@@ -57,7 +58,7 @@
         android:id="@+id/settingsScreen"
         android:name="com.example.easyissue.settingsScreen.SettingsScreen"
         android:label="settings_screen_fragment"
-        tools:layout="@layout/settings_screen"></fragment>
+        tools:layout="@layout/settings_screen"/>
 
     <!-- Global actions -->
     <action
@@ -68,5 +69,10 @@
         app:popUpTo="@id/loginScreen"
         app:popUpToInclusive="true" />
 
+    <fragment
+        android:id="@+id/mySettingsFragment"
+        android:name="com.example.easyissue.preferences.MySettingsFragment"
+        android:label="MySettingsFragment"
+        tools:layout="@xml/preferences"/>
 
 </navigation>
