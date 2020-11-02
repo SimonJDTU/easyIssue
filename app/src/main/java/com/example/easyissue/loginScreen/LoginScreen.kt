@@ -49,7 +49,8 @@ class LoginScreen : Fragment(), KoinComponent {
                 is SignInState.Fail -> {
                     binding.tokenInputLayout.error = getString(R.string.error_invalid_token)
                 }
-                else -> {}
+                else -> {
+                }
             }
         })
 
@@ -67,11 +68,11 @@ class LoginScreen : Fragment(), KoinComponent {
             }
         }
 
-        binding.tokenInput.addTextChangedListener{
+        binding.tokenInput.addTextChangedListener {
             binding.tokenInputLayout.error = null
 
-            it?.let{
-                if(it.length>=resources.getInteger(R.integer.MAX_TOKEN_LENGTH)){
+            it?.let {
+                if (it.length >= resources.getInteger(R.integer.MAX_TOKEN_LENGTH)) {
                     binding.tokenInput.apply {
                         clearFocus()
                         requireContext().hideKeyboard(this)
@@ -84,11 +85,8 @@ class LoginScreen : Fragment(), KoinComponent {
             val input = binding.tokenInput.text.toString()
 
             when {
-                input.length!=40 -> {
+                input.length != 40 || !validateInput(input) -> {
                     binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Length")
-                }
-                !validateInput(input) -> {
-                    binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Format")
                 }
                 else -> {
                     stateManager.validateToken(input)

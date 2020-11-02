@@ -2,35 +2,41 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreferenceCompat
-        app:key="projectSpan"
-        app:title="Double Coloumn for Projects" />
-
-    <Preference
-        app:key="feedback"
-        app:summary="Report technical issues or suggest new features"
-        app:title="Send feedback" />
-
-    <EditTextPreference
-        app:dependency="projectSpan"
-        app:key="test"
-        app:title="Test"
-        app:useSimpleSummaryProvider="true" />
-
     <PreferenceCategory
-        app:key="info"
-        app:title="Info">
-        <Preference
-            app:key="version"
-            app:summary="1.2.345"
-            app:title="Build version" />
+        app:title="@string/settings_category_project">
+        <SwitchPreferenceCompat
+            android:key="@string/key_projectSpan"
+            android:defaultValue="false"
+            android:title="@string/settings_doubleSpan" />
+
+        <ListPreference
+            android:key="@string/key_sortType"
+            android:title="@string/settings_projectSort"
+            android:defaultValue="@string/created"
+            android:dialogTitle="@string/settings_sortType_dialog_title"
+            android:entries="@array/sortTypes"
+            android:entryValues="@array/sortTypesValues"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:key="info">
+    <PreferenceCategory
+        android:title="@string/settings_category_info">
         <Preference
-            android:key="logoutBtn"
-            app:summary="Click here to log out"
-            app:title="Log Out" />
+            android:key="@string/key_buildVersion"
+            android:title="@string/settings_buildVersion"
+            android:summary="@string/buildVersion" />
+
+        <Preference
+            android:key="@string/key_feedback"
+            android:title="@string/settings_feedback"
+            android:summary="@string/feedback_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            android:key="@string/key_logout"
+            android:title="@string/settings_logout_btn"
+            android:summary="@string/settings_logout_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

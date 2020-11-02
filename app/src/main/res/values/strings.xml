@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">easyIssue</string>
+    <string name="buildVersion">1.0.000</string>
 
     <!-- Login Page -->
     <string name="validate_token_btn">VALIDATE TOKEN</string>
@@ -23,11 +24,20 @@
     <string name="projects_title">YOUR PROJECTS</string>
     <string name="no_projects_found">No Projects Found</string>
 
-    <!-- Settings Page -->
-    <string name="settings_title">SETTINGS</string>
-    <string name="sortType">Project Sorting</string>
-    <string name="spanType">Project List Columns</string>
-    <string name="log_out_btn">LOG OUT</string>
+    <!-- Issues Page -->
+    <string name="issue_title">THE TITLE</string>
+    <string name="issue_body">THE BODY</string>
+    <string name="issue_label">THE LABELS</string>
+    <string name="issue_btn">SEND THE ISSUE</string>
+
+    <!-- Logout Dialog -->
+    <string name="settings_dialog_title">Logout</string>
+    <string name="settings_dialog_body">You will be returned to the login screen.</string>
+    <string name="settings_dialog_positive">Yes</string>
+    <string name="settings_dialog_negative">No</string>
+
+    <!-- Preferences / Settings -->
+
     <string name="created">Created</string>
     <string name="alphabetical">Alphabetical</string>
     <string name="lastEdited">Last Edited</string>
@@ -36,17 +46,36 @@
         <item>@string/alphabetical</item>
         <item>@string/lastEdited</item>
     </array>
-    <string name="single_span">1 Column</string>
-    <string name="double_span">2 Columns</string>
 
-    <!-- Issues Page -->
-    <string name="issue_title">THE TITLE</string>
-    <string name="issue_body">THE BODY</string>
-    <string name="issue_label">THE LABELS</string>
-    <string name="issue_btn">SEND THE ISSUE</string>
+    <string name="sortType_created">sortType_created</string>
+    <string name="sortType_alphabetical">sortType_alphabetical</string>
+    <string name="sortType_lastEdited">Last sortType_lastEdited</string>
+    <array name="sortTypesValues">
+        <item>@string/sortType_created</item>
+        <item>@string/sortType_alphabetical</item>
+        <item>@string/sortType_lastEdited</item>
+    </array>
 
-    <!-- Preferences -->
-    <string name="prefs_settings">settings</string>
-    <string name="prefs_login">login</string>
+    <string name="key_sortType">sortType</string>
+    <string name="key_logout">logout</string>
+    <string name="key_feedback">feedback</string>
+    <string name="key_token">token</string>
+    <string name="key_projectSpan">projectSpan</string>
+    <string name="key_buildVersion">version</string>
+
+    <string name="settings_category_project">Project</string>
+    <string name="settings_doubleSpan">Double Column Display</string>
+    <string name="settings_projectSort">List sort type</string>
+    <string name="settings_feedback">Feedback</string>
+    <string name="settings_buildVersion">Build version</string>
+    <string name="settings_category_info">Info</string>
+    <string name="settings_logout_summary">Click here to log out</string>
+    <string name="settings_sortType_dialog_title">Choose a sort type</string>
+
+    <string name="feedback_email">SimonJDTU@Gmail.com</string>
+    <string name="feedback_subject">EasyIssue feedback</string>
+    <string name="feedback_summary">If you have any suggestions, send us an email!</string>
+
+    <string name="settings_logout_btn">Log out</string>
 
 </resources>
