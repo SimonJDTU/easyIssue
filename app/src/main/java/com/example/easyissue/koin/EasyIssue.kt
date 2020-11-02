@@ -1,4 +1,4 @@
-package com.example.easyissue
+package com.example.easyissue.koin
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext

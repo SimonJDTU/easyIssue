@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -48,20 +49,30 @@ class LoginScreen : Fragment(), KoinComponent {
                 is SignInState.Fail -> {
                     binding.tokenInputLayout.error = getString(R.string.error_invalid_token)
                 }
-                else -> {}
+                else -> {
+                }
             }
         })
 
         binding.tokenGuideBtn.setOnClickListener {
-            val boolean = viewModel.tokenGuide.get()
-            viewModel.tokenGuide.set(!boolean!!)
+            val boolean = viewModel.tokenGuide.get() as Boolean
+            viewModel.tokenGuide.set(!boolean)
+
+            binding.tokenGuide.apply {
+                animation = if(boolean){
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.text_down_out)
+                }else{
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.text_up_in)
+                }
+                startAnimation(animation)
+            }
         }
 
-        binding.tokenInput.addTextChangedListener{
+        binding.tokenInput.addTextChangedListener {
             binding.tokenInputLayout.error = null
 
-            it?.let{
-                if(it.length>=resources.getInteger(R.integer.MAX_TOKEN_LENGTH)){
+            it?.let {
+                if (it.length >= resources.getInteger(R.integer.MAX_TOKEN_LENGTH)) {
                     binding.tokenInput.apply {
                         clearFocus()
                         requireContext().hideKeyboard(this)
@@ -74,11 +85,8 @@ class LoginScreen : Fragment(), KoinComponent {
             val input = binding.tokenInput.text.toString()
 
             when {
-                input.length!=40 -> {
+                input.length != 40 || !validateInput(input) -> {
                     binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Length")
-                }
-                !validateInput(input) -> {
-                    binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Format")
                 }
                 else -> {
                     stateManager.validateToken(input)

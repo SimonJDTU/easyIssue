@@ -1,5 +1,6 @@
 package com.example.easyissue.projectScreen
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.easyissue.PreferenceHelper
-import com.example.easyissue.PreferenceHelper.get
 import com.example.easyissue.R
 import com.example.easyissue.SignInState
 import com.example.easyissue.StateManager
@@ -25,7 +25,7 @@ import timber.log.Timber
 class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListener {
 
     private lateinit var viewModel: ProjectScreenViewModel
-    private val prefs = PreferenceHelper
+    private lateinit var prefs: SharedPreferences
     private val stateManager: StateManager by inject()
 
     override fun onCreateView(
@@ -42,14 +42,14 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val isSingleSpan: Boolean = prefs.customPrefs(
-            requireContext(),
-            resources.getString(R.string.prefs_settings)
-        )["isSingleSpan", true]
+        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        binding.projectList.layoutManager = GridLayoutManager(requireContext(), if(isSingleSpan) 1 else 2)
+        val isDoubleSpan= prefs.getBoolean("projectSpan", true)
 
-        val projectAdapter = ProjectAdapter(this, isSingleSpan, resources)
+        binding.projectList.layoutManager =
+            GridLayoutManager(requireContext(), if (isDoubleSpan) 2 else 1)
+
+        val projectAdapter = ProjectAdapter(this, isDoubleSpan)
 
         binding.adapter = projectAdapter
 
@@ -65,7 +65,8 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
                 is SignInState.InvalidToken -> {
                     findNavController().navigate(R.id.projectSceen_to_loginScreen)
                 }
-                else -> {}
+                else -> {
+                }
             }
         })
 
@@ -75,10 +76,7 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
     }
 
     private fun fetchProjects() {
-        val token = prefs.customPrefs(
-            requireContext(),
-            resources.getString(R.string.prefs_login)
-        )["token", ""]
+        val token: String = prefs.getString(getString(R.string.key_token),"").toString()
 
         GithubWebService.getProjects(token)
             .doOnSubscribe {
@@ -106,13 +104,11 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
     }
 
     private fun sortProjects(data: List<Project>): List<Project> {
-        return when (PreferenceHelper.customPrefs(
-            requireContext(),
-            resources.getString(R.string.prefs_settings)
-        )["projectSortType", ""]) {
-            "created" -> data.sortedBy { list -> list.id }
-            "alphabetical" -> data.sortedBy { list -> list.name }
-            "lastEdited" -> data.sortedByDescending { list -> list.updatedAt }
+        return when (prefs.getString(getString(R.string.key_sortType),""))
+            {
+            "sortType_created" -> data.sortedBy { list -> list.id }
+            "sortType_alphabetical" -> data.sortedBy { list -> list.name }
+            "sortType_lastEdited" -> data.sortedByDescending { list -> list.updatedAt }
             else -> data.sortedBy { list -> list.id }
         }
     }

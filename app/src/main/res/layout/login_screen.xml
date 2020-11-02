@@ -17,20 +17,12 @@
         tools:context=".loginScreen.LoginScreen">
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/overlay_shape"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <FrameLayout
             android:id="@+id/logoContainer"
             android:layout_width="@dimen/unit7"
             android:layout_height="@dimen/unit7"
-            android:layout_marginTop="@dimen/unit2"
+            android:layout_marginTop="@dimen/unit3"
             android:background="@drawable/icon_shape"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

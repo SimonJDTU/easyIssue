@@ -10,19 +10,23 @@
 
     <!-- View styles -->
 
-  <style name="closeBtn">
-    <item name="android:layout_width">@dimen/unit2</item>
-    <item name="android:layout_height">@dimen/unit2</item>
-    <item name="android:rotation">180</item>
-    <item name="android:src">@drawable/ic_arrow</item>
-  </style>
+    <style name="closeBtn">
+        <item name="android:layout_width">@dimen/unit2</item>
+        <item name="android:layout_height">@dimen/unit2</item>
+        <item name="android:rotation">180</item>
+        <item name="android:src">@drawable/ic_arrow</item>
+    </style>
 
     <style name="Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/unit3</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_margin">@dimen/gutterMargin</item>
-        <item name="android:backgroundTint">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="PreferenceTheme" parent="@style/Theme.MaterialComponents.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <!-- Text styles -->

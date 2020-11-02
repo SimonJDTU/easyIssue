@@ -2,18 +2,18 @@ package com.example.easyissue
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import com.example.easyissue.PreferenceHelper.get
+import androidx.preference.PreferenceManager
 import com.example.easyissue.PreferenceHelper.set
 import com.example.easyissue.data.GithubWebService
 
 class StateManager(val context: Context) {
 
-    private val prefs = PreferenceHelper
+    private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     var userState: MutableLiveData<SignInState> = MutableLiveData(SignInState.Idle)
 
     fun validateToken(tokenInput: String? = "") {
         val token = if(tokenInput.isNullOrBlank()){
-            prefs.customPrefs(context, context.resources.getString(R.string.prefs_login))["token"]
+            prefs.getString(context.resources.getString(R.string.key_token),"").toString()
         }else{
             tokenInput
         }
@@ -21,15 +21,20 @@ class StateManager(val context: Context) {
         GithubWebService.getUser(token)
             .subscribe {_, throwable ->
                 if(throwable == null){
-                    prefs.customPrefs(context, context.resources.getString(R.string.prefs_login))["token"] = token
+                    prefs[context.resources.getString(R.string.key_token)] = token
                     userState.postValue(SignInState.ValidToken)
                 }else{
-                    prefs.customPrefs(context,context.resources.getString(R.string.prefs_login))["token"] = null
+                    prefs[context.resources.getString(R.string.key_token)] = null
                     userState.postValue( SignInState.InvalidToken(throwable.message.toString()) )
                 }
             }
     }
+    fun logout(){
+        userState.postValue(SignInState.Idle)
+    }
 }
+
+
 
 /*
 User states which determines actions from observers:
