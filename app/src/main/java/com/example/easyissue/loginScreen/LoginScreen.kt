@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -53,8 +54,17 @@ class LoginScreen : Fragment(), KoinComponent {
         })
 
         binding.tokenGuideBtn.setOnClickListener {
-            val boolean = viewModel.tokenGuide.get()
-            viewModel.tokenGuide.set(!boolean!!)
+            val boolean = viewModel.tokenGuide.get() as Boolean
+            viewModel.tokenGuide.set(!boolean)
+
+            binding.tokenGuide.apply {
+                animation = if(boolean){
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.text_down_out)
+                }else{
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.text_up_in)
+                }
+                startAnimation(animation)
+            }
         }
 
         binding.tokenInput.addTextChangedListener{
