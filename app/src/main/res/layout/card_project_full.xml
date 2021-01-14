@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/fullLanguage"
-            style="@style/Caption"
+            style="@style/Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/gutterMargin"
@@ -64,7 +64,7 @@
 
         <TextView
             android:id="@+id/fullOwner"
-            style="@style/Caption"
+            style="@style/Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/gutterMargin"
