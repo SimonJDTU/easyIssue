@@ -27,7 +27,7 @@
     <!-- Issues Page -->
     <string name="issue_title">THE TITLE</string>
     <string name="issue_body">THE BODY</string>
-    <string name="issue_label">THE LABELS</string>
+    <string name="issue_image">THE IMAGE</string>
     <string name="issue_btn">SEND THE ISSUE</string>
 
     <!-- Logout Dialog -->
@@ -77,5 +77,15 @@
     <string name="feedback_summary">If you have any suggestions, send us an email!</string>
 
     <string name="settings_logout_btn">Log out</string>
+
+    <string name="dialog_yes_btn">Yes</string>
+    <string name="dialog_no_btn">No</string>
+    <string name="dialog_ok_btn">OK</string>
+    <string name="dialog_proceed_title">Are you sure you want to create this issue?</string>
+    <string name="dialog_error_title">An error has occurred. \n\n Please try again later.</string>
+
+    <string name="confirmation_issueData">Issue #%s: \n %s \n\n</string>
+    <string name="confirmation_wasCreated">was created</string>
+    <string name="confirmation_btn">Back to Projects</string>
 
 </resources>

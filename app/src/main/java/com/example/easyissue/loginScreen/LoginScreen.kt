@@ -59,9 +59,9 @@ class LoginScreen : Fragment(), KoinComponent {
             viewModel.tokenGuide.set(!boolean)
 
             binding.tokenGuide.apply {
-                animation = if(boolean){
+                animation = if (boolean) {
                     AnimationUtils.loadAnimation(requireContext(), R.anim.text_down_out)
-                }else{
+                } else {
                     AnimationUtils.loadAnimation(requireContext(), R.anim.text_up_in)
                 }
                 startAnimation(animation)
@@ -84,13 +84,10 @@ class LoginScreen : Fragment(), KoinComponent {
         binding.loginBtn.setOnClickListener {
             val input = binding.tokenInput.text.toString()
 
-            when {
-                input.length != 40 || !validateInput(input) -> {
-                    binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Length")
-                }
-                else -> {
-                    stateManager.validateToken(input)
-                }
+            if (input.length != 40 || !validateInput(input)) {
+                binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Length")
+            } else {
+                stateManager.validateToken(input)
             }
         }
 
@@ -105,7 +102,8 @@ class LoginScreen : Fragment(), KoinComponent {
     }
 
     private fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

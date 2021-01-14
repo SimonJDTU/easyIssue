@@ -52,6 +52,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tokenInput"
                 style="@style/Headline"
+                android:inputType="textFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -74,7 +75,7 @@
             android:layout_width="@dimen/questionmark_icon"
             android:layout_height="@dimen/questionmark_icon"
             android:background="@color/transparent"
-            android:padding="5dp"
+            android:padding="@dimen/unit_half"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_questionmark_icon"
             app:layout_constraintBottom_toBottomOf="@id/tokenTitle"
