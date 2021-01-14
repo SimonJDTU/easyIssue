@@ -19,6 +19,8 @@
     <!-- Project Adapter-->
     <string name="card_language">Language: %s</string>
     <string name="card_owner">Owner: %s</string>
+    <string name="card_openIssues">Open Issues: %s</string>
+    <string name="card_unknown">Unknown</string>
 
     <!-- Projects Page -->
     <string name="projects_title">YOUR PROJECTS</string>
@@ -87,5 +89,6 @@
     <string name="confirmation_issueData">Issue #%s: \n %s \n\n</string>
     <string name="confirmation_wasCreated">was created</string>
     <string name="confirmation_btn">Back to Projects</string>
+
 
 </resources>

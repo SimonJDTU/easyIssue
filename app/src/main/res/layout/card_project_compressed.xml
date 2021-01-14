@@ -13,42 +13,67 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/compBackground"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/unit5"
+        android:layout_height="@dimen/unit4_5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/compIcon"
+            android:layout_width="@dimen/textHeadline"
+            android:layout_height="@dimen/textHeadline"
+            android:layout_margin="@dimen/unit_quarter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_kotlin" />
 
         <TextView
             android:id="@+id/compName"
             style="@style/Headline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginEnd="@dimen/unit"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/black"
+            android:layout_marginStart="@dimen/unit_quarter"
+            app:layout_constraintBottom_toBottomOf="@+id/compIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="PROJECT_NAME_DISPLAY"
-             />
+            app:layout_constraintStart_toEndOf="@+id/compIcon"
+            app:layout_constraintTop_toTopOf="@id/compIcon"
+            tools:text="PROJECT_NAME_DISPLAY" />
 
         <ImageView
+            android:id="@+id/splitter"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="@+id/compName"
-            app:layout_constraintStart_toStartOf="@+id/compName"
+            android:layout_marginStart="@dimen/unit_quarter"
+            android:layout_marginEnd="@dimen/unit_quarter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/compName" />
 
         <TextView
-            android:id="@+id/compInfo"
+            android:id="@+id/compLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/compName"
-            app:layout_constraintTop_toBottomOf="@+id/compName" />
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/compIcon"
+            app:layout_constraintTop_toBottomOf="@+id/splitter"
+            tools:text="Language: Java" />
+
+        <TextView
+            android:id="@+id/compOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/compIcon"
+            app:layout_constraintTop_toBottomOf="@+id/compLanguage"
+            tools:text="Owner: SimonJDTU" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
