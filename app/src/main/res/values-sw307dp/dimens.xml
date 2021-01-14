@@ -18,4 +18,12 @@
     <dimen name="questionmark_icon">@dimen/unit2</dimen>
     <dimen name="project_card_spacing">@dimen/unit_half</dimen>
 
+    <!-- Text -->
+    <dimen name="textDisplay">35dp</dimen>
+    <dimen name="textHeader">27dp</dimen>
+    <dimen name="textTitle1">22sp</dimen>
+    <dimen name="textTitle2">15dp</dimen>
+    <dimen name="textHeadline">15dp</dimen>
+    <dimen name="textBody">7dp</dimen>
+    <dimen name="textCaption">5dp</dimen>
 </resources>

@@ -67,6 +67,14 @@
         <argument
             android:name="projectItem"
             app:argType="com.example.easyissue.data.Project" />
+        <action
+            android:id="@+id/issueScreen_to_confirmationScreen"
+            app:destination="@id/confirmationScreen"
+            app:enterAnim="@anim/fade_enter"
+            app:exitAnim="@anim/fade_exit"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/issueScreen"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <!-- Global actions -->
@@ -77,7 +85,18 @@
         app:launchSingleTop="true"
         app:popUpTo="@id/loginScreen"
         app:popUpToInclusive="true" />
-
+    <fragment
+        android:id="@+id/confirmationScreen"
+        android:name="com.example.easyissue.confirmationScreen.ConfirmationScreen"
+        android:label="confirmation_screen"
+        tools:layout="@layout/confirmation_screen" >
+        <action
+            android:id="@+id/confirmationScreen_to_projectScreen"
+            app:destination="@id/projectScreen" />
+        <argument
+            android:name="IssueData"
+            app:argType="com.example.easyissue.data.Issue" />
+    </fragment>
 
 
 </navigation>

@@ -17,4 +17,13 @@
     <dimen name="gutterMargin">@dimen/unit</dimen>
     <dimen name="questionmark_icon">@dimen/unit2</dimen>
     <dimen name="project_card_spacing">@dimen/unit_half</dimen>
+
+    <!-- Text -->
+    <dimen name="textDisplay">41dp</dimen>
+    <dimen name="textHeader">33dp</dimen>
+    <dimen name="textTitle1">28sp</dimen>
+    <dimen name="textTitle2">21dp</dimen>
+    <dimen name="textHeadline">21dp</dimen>
+    <dimen name="textBody">13dp</dimen>
+    <dimen name="textCaption">11dp</dimen>
 </resources>
