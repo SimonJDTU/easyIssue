@@ -128,15 +128,6 @@
                         android:textColor="@color/black"
                         tools:text="TLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla, ipsum nec elementum feugiat, tortor leo ullamcorper magna, eu tempor nibh mauris sit amet urna. Donec dolor dui, ornare a vehicula at, pharetra ac erat. Morbi consectetur lacus tellus, sit amet luctus tellus malesuada at. Fusce eu nunc id mi egestas laoreet laoreet ut felis." />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/Headline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/issue_image"
-                    android:layout_marginStart="@dimen/gutterMargin"
-                    app:layout_constraintBottom_toTopOf="@id/bodyInputLayout"
-                    app:layout_constraintStart_toStartOf="@id/bodyInputLayout" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
