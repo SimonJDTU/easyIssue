@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        android:layout="@layout/preferences_category"
         app:title="@string/settings_category_project">
         <SwitchPreferenceCompat
             android:key="@string/key_projectSpan"
@@ -20,6 +21,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:layout="@layout/preferences_category"
         android:title="@string/settings_category_info">
         <Preference
             android:key="@string/key_buildVersion"

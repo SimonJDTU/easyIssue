@@ -44,7 +44,7 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        val isDoubleSpan= prefs.getBoolean("projectSpan", true)
+        val isDoubleSpan= prefs.getBoolean("projectSpan", false)
 
         binding.projectList.layoutManager =
             GridLayoutManager(requireContext(), if (isDoubleSpan) 2 else 1)
