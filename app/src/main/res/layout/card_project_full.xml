@@ -41,10 +41,10 @@
             android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginEnd="@dimen/unit"
             android:background="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toBottomOf="@id/languageIcon"
+            app:layout_constraintBottom_toBottomOf="@id/fullIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/languageIcon"
-            app:layout_constraintTop_toTopOf="@id/languageIcon"/>
+            app:layout_constraintStart_toEndOf="@id/fullIcon"
+            app:layout_constraintTop_toTopOf="@id/fullIcon"/>
 
         <TextView
             android:id="@+id/fullLanguage"
@@ -71,15 +71,16 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fullLanguage"
             app:layout_constraintStart_toStartOf="@+id/fullLanguage"
             app:layout_constraintTop_toBottomOf="@id/fullLanguage"
-            tools:layout_editor_absoluteY="24dp"
             tools:text="PROJECT_OWNER_DISPLAY"
             tools:textColor="@color/black" />
 
         <ImageView
-            android:id="@+id/languageIcon"
+            android:id="@+id/fullIcon"
             android:layout_width="@dimen/unit2"
             android:layout_height="@dimen/unit2"
             android:layout_margin="@dimen/unit"

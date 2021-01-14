@@ -7,6 +7,7 @@
     <dimen name="unit2_5">45dp</dimen>
     <dimen name="unit3">54dp</dimen>
     <dimen name="unit4">72dp</dimen>
+    <dimen name="unit4_5">81dp</dimen>
     <dimen name="unit5">90dp</dimen>
     <dimen name="unit6">108dp</dimen>
     <dimen name="unit7">126dp</dimen>

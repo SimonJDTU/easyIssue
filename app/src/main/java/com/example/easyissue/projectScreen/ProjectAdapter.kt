@@ -63,9 +63,12 @@ class ProjectAdapter(
             val projectTheme = ProjectTheme(item.language)
             itemView.apply {
                 fullName.text = item.name
-                fullLanguage.text = resources.getString(R.string.card_language, item.language)
+                fullLanguage.text = resources.getString(
+                    R.string.card_language,
+                    item.language ?: resources.getString(R.string.card_unknown)
+                )
                 fullOwner.text = resources.getString(R.string.card_owner, item.owner.login)
-                languageIcon.setBackgroundResource(projectTheme.languageIcon)
+                fullIcon.setBackgroundResource(projectTheme.languageIcon)
                 fullBackground.background =
                     ResourcesCompat.getDrawable(resources, projectTheme.backgroundColor, null)
             }
@@ -88,7 +91,12 @@ class ProjectAdapter(
             val projectTheme = ProjectTheme(item.language)
             itemView.apply {
                 compName.text = item.name
-                compInfo.text = resources.getString(R.string.card_language, item.language)
+                compLanguage.text = resources.getString(
+                    R.string.card_language,
+                    item.language ?: resources.getString(R.string.card_unknown)
+                )
+                compOwner.text = resources.getString(R.string.card_owner, item.owner.login)
+                compIcon.setBackgroundResource(projectTheme.languageIcon)
                 compBackground.background =
                     ResourcesCompat.getDrawable(resources, projectTheme.backgroundColor, null)
             }
