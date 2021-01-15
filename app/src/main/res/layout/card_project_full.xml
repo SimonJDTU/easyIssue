@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fullBackground"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/unit4"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +69,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/unit_quarter"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fullLanguage"
