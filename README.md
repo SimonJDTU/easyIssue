@@ -1,3 +1,3 @@
 # easyIssue
 
-![easyIssue poster](https://imgur.com/a/SqEcU4Y)
+![easyIssue poster](https://i.imgur.com/QwsFvuA.png)
