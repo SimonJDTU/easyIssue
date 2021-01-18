@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.easyissue.R
 import com.example.easyissue.SignInState
 import com.example.easyissue.StateManager
-import com.example.easyissue.webService.GithubWebService
 import com.example.easyissue.data.Project
 import com.example.easyissue.databinding.ProjectScreenBinding
+import com.example.easyissue.webService.GithubWebService
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import timber.log.Timber
@@ -62,11 +62,10 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
                 is SignInState.ValidToken -> {
                     fetchProjects()
                 }
-                is SignInState.InvalidToken -> {
+                is SignInState.InvalidToken, SignInState.LoggedOut, SignInState.FreshStart -> {
                     findNavController().navigate(R.id.projectSceen_to_loginScreen)
                 }
-                else -> {
-                }
+                else -> {}
             }
         })
 
