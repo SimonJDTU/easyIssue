@@ -21,7 +21,7 @@ object GithubWebService {
     private val service: GithubProjectApi = client.create(GithubProjectApi::class.java)
 
     fun getProjects(token: String): Single<List<Project>> {
-        return service.getProjects("Bearer $token", "created", "internal")
+        return service.getProjects("Bearer $token", "internal")
             .subscribeOn(Schedulers.io())
     }
 
@@ -35,7 +35,6 @@ object GithubWebService {
 
         return service.postIssue(userID, projectName, "Bearer $token", issueBody)
             .subscribeOn(Schedulers.io())
-        //return service.postIssue(userID,projectName, "Bearer $token", issue).subscribeOn(Schedulers.io())
     }
 
     interface GithubProjectApi {
@@ -48,7 +47,6 @@ object GithubWebService {
         @GET("/user/repos")
         fun getProjects(
             @Header("Authorization") token: String,
-            @Query("sort") sortType: String,
             @Query("type") type: String
         ): Single<List<Project>>
 

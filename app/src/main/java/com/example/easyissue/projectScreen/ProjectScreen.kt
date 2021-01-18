@@ -44,7 +44,7 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        val isDoubleSpan= prefs.getBoolean("projectSpan", false)
+        val isDoubleSpan = prefs.getBoolean("projectSpan", false)
 
         binding.projectList.layoutManager =
             GridLayoutManager(requireContext(), if (isDoubleSpan) 2 else 1)
@@ -65,7 +65,8 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
                 is SignInState.InvalidToken, SignInState.LoggedOut, SignInState.FreshStart -> {
                     findNavController().navigate(R.id.projectSceen_to_loginScreen)
                 }
-                else -> {}
+                else -> {
+                }
             }
         })
 
@@ -75,7 +76,7 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
     }
 
     private fun fetchProjects() {
-        val token: String = prefs.getString(getString(R.string.key_token),"").toString()
+        val token: String = prefs.getString(getString(R.string.key_token), "").toString()
 
         GithubWebService.getProjects(token)
             .doOnSubscribe {
@@ -103,10 +104,9 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
     }
 
     private fun sortProjects(data: List<Project>): List<Project> {
-        return when (prefs.getString(getString(R.string.key_sortType),""))
-            {
+        return when (prefs.getString(getString(R.string.key_sortType), "")) {
             "sortType_created" -> data.sortedBy { list -> list.id }
-            "sortType_alphabetical" -> data.sortedBy { list -> list.name }
+            "sortType_alphabetical" -> data.sortedBy { list -> list.name.toLowerCase() }
             "sortType_lastEdited" -> data.sortedByDescending { list -> list.updatedAt }
             else -> data.sortedBy { list -> list.id }
         }

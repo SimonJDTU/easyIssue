@@ -2,6 +2,7 @@ package com.example.easyissue.data
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Keep
@@ -17,6 +18,7 @@ data class Project(
     val permissions: Permissions,
     val `private`: Boolean,
     val language: String?,
+    @SerializedName("updated_at")
     val updatedAt: String
 ) : Parcelable
 
