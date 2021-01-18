@@ -65,6 +65,9 @@ class IssueScreen : Fragment(), OnPositiveSelected {
 
         binding.titleInput.doAfterTextChanged {
             viewModel.issueTitle = it.toString()
+            if (it.isNullOrBlank()) {
+                binding.titleInputLayout.error = getString(R.string.error_empty_title)
+            }
         }
 
         binding.bodyInput.doAfterTextChanged {
@@ -79,12 +82,15 @@ class IssueScreen : Fragment(), OnPositiveSelected {
         val issueBody = viewModel.issueBody.toString()
         val token = prefs.getString(getString(R.string.key_token), "").toString()
 
+        viewModel.isLoading.set(true)
+
         GithubWebService.postIssue(
             project.owner.login, project.name, token, IssueHolder(
                 issueTitle,
                 issueBody
             )
         ).subscribe { data, throwable ->
+            viewModel.isLoading.set(false)
             if (throwable == null) {
                 Timber.e(data.toString())
                 val action = IssueScreenDirections.issueScreenToConfirmationScreen(data)
