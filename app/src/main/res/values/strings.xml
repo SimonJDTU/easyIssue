@@ -52,7 +52,7 @@
 
     <string name="sortType_created">sortType_created</string>
     <string name="sortType_alphabetical">sortType_alphabetical</string>
-    <string name="sortType_lastEdited">Last sortType_lastEdited</string>
+    <string name="sortType_lastEdited">sortType_lastEdited</string>
     <array name="sortTypesValues">
         <item>@string/sortType_created</item>
         <item>@string/sortType_alphabetical</item>
