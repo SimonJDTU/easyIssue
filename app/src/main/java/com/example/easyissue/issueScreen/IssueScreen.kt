@@ -16,8 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceManager
 import com.example.easyissue.R
-import com.example.easyissue.data.GithubWebService
-import com.example.easyissue.data.IssueDTO
+import com.example.easyissue.webService.GithubWebService
+import com.example.easyissue.data.IssueHolder
 import com.example.easyissue.data.Project
 import com.example.easyissue.data.ProjectTheme
 import com.example.easyissue.databinding.IssueScreenBinding
@@ -82,7 +82,7 @@ class IssueScreen : Fragment(), InteractiveDialog.OnYesSelected {
         val token = prefs.getString(getString(R.string.key_token), "").toString()
 
         GithubWebService.postIssue(
-            project.owner.login, project.name, token, IssueDTO(
+            project.owner.login, project.name, token, IssueHolder(
                 issueTitle,
                 issueBody
             )

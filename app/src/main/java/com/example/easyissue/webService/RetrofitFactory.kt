@@ -1,12 +1,11 @@
-package com.example.easyissue.data
+package com.example.easyissue.webService
 
 import okhttp3.OkHttpClient
-import org.koin.core.KoinComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitFactory: KoinComponent {
+class RetrofitFactory {
     private val GITHUB_BASE_URL = "https://api.github.com"
     private val GITLAB_BASE_URL = ""
     private val ANOTHERR_BASE_URL = ""

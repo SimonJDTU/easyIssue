@@ -95,7 +95,7 @@
             app:destination="@id/projectScreen" />
         <argument
             android:name="IssueData"
-            app:argType="com.example.easyissue.data.Issue" />
+            app:argType="com.example.easyissue.data.IssueDTO" />
     </fragment>
 
 
