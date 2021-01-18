@@ -85,6 +85,7 @@
                     android:layout_marginStart="@dimen/gutterMargin"
                     android:layout_marginTop="@dimen/unit_half"
                     android:layout_marginEnd="@dimen/gutterMargin"
+                    app:errorEnabled="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -130,6 +131,20 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:visibility="@{viewModel.isLoading}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_animation"
+            app:lottie_speed="2"
+            tools:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sendBtn"
