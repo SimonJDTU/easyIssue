@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class User(
+data class UserDTO(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("events_url")

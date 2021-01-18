@@ -10,12 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.easyissue.R
-import com.example.easyissue.data.Issue
+import com.example.easyissue.data.IssueDTO
 import com.example.easyissue.databinding.ConfirmationScreenBinding
 
 class ConfirmationScreen : Fragment() {
 
-    private lateinit var issueData: Issue
+    private lateinit var issueDTO: IssueDTO
     private lateinit var viewModel: ConfirmationViewModel
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class ConfirmationScreen : Fragment() {
 
         val args: ConfirmationScreenArgs by navArgs()
 
-        issueData = args.IssueData
+        issueDTO = args.IssueData
 
         binding.checkmarkAnimation.playAnimation()
 
@@ -41,8 +41,8 @@ class ConfirmationScreen : Fragment() {
             informationSting.set(
                 resources.getString(
                     R.string.confirmation_issueData,
-                    issueData.number.toString(),
-                    issueData.title
+                    issueDTO.number.toString(),
+                    issueDTO.title
                 )
             )
         }

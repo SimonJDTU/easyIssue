@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.example.easyissue.PreferenceHelper.set
-import com.example.easyissue.data.GithubWebService
+import com.example.easyissue.webService.GithubWebService
 
 class StateManager(val context: Context) {
 

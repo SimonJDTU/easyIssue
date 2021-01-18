@@ -1,5 +1,9 @@
-package com.example.easyissue.data
+package com.example.easyissue.webService
 
+import com.example.easyissue.data.IssueDTO
+import com.example.easyissue.data.IssueHolder
+import com.example.easyissue.data.Project
+import com.example.easyissue.data.UserDTO
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -21,13 +25,13 @@ object GithubWebService {
             .subscribeOn(Schedulers.io())
     }
 
-    fun getUser(token: String): Single<User>{
+    fun getUser(token: String): Single<UserDTO>{
         return service.getUser("Bearer $token")
             .subscribeOn(Schedulers.io())
     }
 
-    fun postIssue(userID: String, projectName: String, token: String, issueDTO: IssueDTO): Single<Issue>{
-        val issueBody: JsonObject = JsonParser.parseString(Gson().toJson(issueDTO)).asJsonObject
+    fun postIssue(userID: String, projectName: String, token: String, issueHolder: IssueHolder): Single<IssueDTO>{
+        val issueBody: JsonObject = JsonParser.parseString(Gson().toJson(issueHolder)).asJsonObject
 
         return service.postIssue(userID, projectName, "Bearer $token", issueBody)
             .subscribeOn(Schedulers.io())
@@ -39,7 +43,7 @@ object GithubWebService {
         @GET("/user")
         fun getUser(
             @Header("Authorization") token: String
-        ): Single<User>
+        ): Single<UserDTO>
 
         @GET("/user/repos")
         fun getProjects(
@@ -54,6 +58,6 @@ object GithubWebService {
             @Path("project") projectName: String,
             @Header("Authorization") token: String,
             @Body issue: JsonObject
-        ): Single<Issue>
+        ): Single<IssueDTO>
     }
 }

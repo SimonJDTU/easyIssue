@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.easyissue.R
 import com.example.easyissue.SignInState
 import com.example.easyissue.StateManager
-import com.example.easyissue.data.GithubWebService
+import com.example.easyissue.webService.GithubWebService
 import com.example.easyissue.data.Project
 import com.example.easyissue.databinding.ProjectScreenBinding
 import org.koin.core.KoinComponent
