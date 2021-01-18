@@ -11,9 +11,11 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.easyissue.InteractiveDialog
+import com.example.easyissue.InteractiveDialog.DialogType
+import com.example.easyissue.InteractiveDialog.OnPositiveSelected
 import com.example.easyissue.R
 import com.example.easyissue.SignInState
 import com.example.easyissue.StateManager
@@ -23,7 +25,7 @@ import org.koin.core.inject
 import java.util.regex.Pattern
 
 
-class LoginScreen : Fragment(), KoinComponent {
+class LoginScreen : Fragment(), KoinComponent, OnPositiveSelected {
 
     private lateinit var viewModel: LoginScreenViewModel
     private val stateManager: StateManager by inject()
@@ -41,16 +43,29 @@ class LoginScreen : Fragment(), KoinComponent {
 
         binding.viewModel = viewModel
 
-        stateManager.userState.observe(viewLifecycleOwner, Observer {
+        stateManager.userState.observe(viewLifecycleOwner, {
             when (it) {
                 is SignInState.ValidToken -> {
                     findNavController().navigate(R.id.loginScreen_to_projectScreen)
                 }
                 is SignInState.Fail -> {
                     binding.tokenInputLayout.error = getString(R.string.error_invalid_token)
+                    viewModel.isLoading.set(false)
                 }
-                else -> {
+                is SignInState.InvalidToken -> {
+                    viewModel.isLoading.set(false)
+                    InteractiveDialog(this, DialogType.Error()).show(
+                        parentFragmentManager,
+                        null
+                    )
                 }
+                is SignInState.LoggedOut -> {
+                    InteractiveDialog(this, DialogType.LoggedOut).show(
+                        parentFragmentManager,
+                        null
+                    )
+                }
+                SignInState.FreshStart, SignInState.Idle -> {}
             }
         })
 
@@ -88,6 +103,7 @@ class LoginScreen : Fragment(), KoinComponent {
                 binding.tokenInputLayout.error = getString(R.string.error_bad_token, "Length")
             } else {
                 stateManager.validateToken(input)
+                viewModel.isLoading.set(true)
             }
         }
 
@@ -106,4 +122,6 @@ class LoginScreen : Fragment(), KoinComponent {
             getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    override fun dialogPositiveOption() {}
 }
