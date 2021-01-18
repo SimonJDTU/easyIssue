@@ -10,8 +10,9 @@
         \n2.   Navigate to settings
         \n3.   Open developer settings
         \n4.   Navigate to "Personal access token"
-        \n5.   Add a token description and click Generate token
-        \n6.   Copy the token to the input field above
+        \n5.   Check the option \"public_repo\" under \"repo\"
+        \n6.   Add a token description and click Generate token
+        \n7.   Copy the token to the input field above
     </string>
     <string name="error_bad_token">Bad Token %s</string>
     <string name="error_invalid_token">Invalid Token</string>
