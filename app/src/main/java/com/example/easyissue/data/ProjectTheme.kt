@@ -35,6 +35,21 @@ data class ProjectTheme(val language: String?) {
                 backgroundColor = R.drawable.gradient_html
                 topGradient = R.drawable.gradient_top_html
             }
+            "Swift" -> {
+                languageIcon = R.drawable.ic_swift
+                backgroundColor = R.drawable.gradient_swift
+                topGradient = R.drawable.gradient_top_swift
+            }
+            "Python" -> {
+                languageIcon = R.drawable.ic_python
+                backgroundColor = R.drawable.gradient_python
+                topGradient = R.drawable.gradient_top_python
+            }
+            "React" -> {
+                languageIcon = R.drawable.ic_react
+                backgroundColor = R.drawable.gradient_react
+                topGradient = R.drawable.gradient_top_react
+            }
             null -> {
                 languageIcon = R.drawable.ic_questionmark
                 backgroundColor = R.drawable.gradient_unknown

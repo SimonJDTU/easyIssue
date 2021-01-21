@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
@@ -31,7 +30,7 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = DataBindingUtil.inflate<ProjectScreenBinding>(
             inflater,
             R.layout.project_screen, container, false
@@ -57,13 +56,13 @@ class ProjectScreen : Fragment(), KoinComponent, ProjectAdapter.OnItemClickListe
             findNavController().navigate(R.id.projectScreen_to_settingsScreen)
         }
 
-        stateManager.userState.observe(viewLifecycleOwner, Observer {
+        stateManager.userState.observe(viewLifecycleOwner, {
             when (it) {
                 is SignInState.ValidToken -> {
                     fetchProjects()
                 }
                 is SignInState.InvalidToken, SignInState.LoggedOut, SignInState.FreshStart -> {
-                    findNavController().navigate(R.id.projectSceen_to_loginScreen)
+                    findNavController().navigate(R.id.toLoginScreen)
                 }
                 else -> {
                 }

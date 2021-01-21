@@ -31,7 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/unit"
-                android:src="@mipmap/logo" />
+                android:src="@mipmap/logo"
+                android:contentDescription="@string/desc_logo" />
         </FrameLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -41,6 +42,7 @@
             android:layout_marginTop="@dimen/unit"
             android:layout_marginStart="@dimen/gutterMargin"
             android:layout_marginEnd="@dimen/gutterMargin"
+            app:setErrorText="@{viewModel.tokenErrorMsg}"
             app:hintEnabled="false"
             app:errorEnabled="true"
             app:counterEnabled="true"

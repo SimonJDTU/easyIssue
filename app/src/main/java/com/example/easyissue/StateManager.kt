@@ -12,15 +12,15 @@ class StateManager(val context: Context) {
     var userState: MutableLiveData<SignInState> = MutableLiveData(SignInState.Idle)
 
     fun validateToken(tokenInput: String? = "") {
-        val token = if(tokenInput.isNullOrBlank()){
-            prefs.getString(context.resources.getString(R.string.key_token),"").toString()
-        }else{
+        val token = if (tokenInput.isNullOrBlank()) {
+            prefs.getString(context.resources.getString(R.string.key_token), "").toString()
+        } else {
             tokenInput
         }
 
-        if(token.isEmpty()){
+        if (token.isEmpty()) {
             userState.postValue(SignInState.FreshStart)
-        }else {
+        } else {
             GithubWebService.getUser(token)
                 .subscribe { _, throwable ->
                     if (throwable == null) {
@@ -33,11 +33,11 @@ class StateManager(val context: Context) {
                 }
         }
     }
-    fun logout(){
+
+    fun logout() {
         userState.postValue(SignInState.LoggedOut)
     }
 }
-
 
 
 /*

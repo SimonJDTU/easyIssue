@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="SpUsage">
 
-
     <data>
-
         <variable
             name="viewModel"
             type="com.example.easyissue.confirmationScreen.ConfirmationViewModel" />
@@ -40,28 +38,28 @@
             app:layout_constraintTop_toBottomOf="@id/checkmark_animation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Issue #21: \n Change font in multiple edittexts \n\n"/>
+            tools:text="Issue #21: \n Change font in multiple edittexts"/>
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/Header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirmation_wasCreated"
-            android:gravity="center"
             android:layout_marginStart="@dimen/gutterMargin"
+            android:layout_marginTop="@dimen/unit2"
             android:layout_marginEnd="@dimen/gutterMargin"
-            app:layout_constraintTop_toBottomOf="@id/issueInfo"
+            android:gravity="center"
+            android:text="@string/confirmation_wasCreated"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintBottom_toTopOf="@+id/projectsBtn"
+            app:layout_constraintEnd_toEndOf="@id/issueInfo"
             app:layout_constraintStart_toStartOf="@id/issueInfo"
-            app:layout_constraintEnd_toEndOf="@id/issueInfo" />
-        
+            app:layout_constraintTop_toBottomOf="@id/issueInfo" />
+
         <Button
             android:id="@+id/projectsBtn"
             style="@style/Button"
             android:text="@string/confirmation_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>
-
