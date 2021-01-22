@@ -16,7 +16,8 @@ data class Project(
     val openIssuesCount: Int,
     val owner: Owner,
     val permissions: Permissions,
-    val `private`: Boolean,
+    @SerializedName("`private`")
+    val isPrivate: Boolean,
     val language: String?,
     @SerializedName("updated_at")
     val updatedAt: String

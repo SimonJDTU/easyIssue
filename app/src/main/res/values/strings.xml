@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">easyIssue</string>
     <string name="buildVersion">1.0.000</string>
+    <string name="desc_logo">easyIssue logo</string>
 
     <!-- Login Page -->
     <string name="validate_token_btn">VALIDATE TOKEN</string>
@@ -10,7 +11,7 @@
         \n2.   Navigate to settings
         \n3.   Open developer settings
         \n4.   Navigate to "Personal access token"
-        \n5.   Check the option \"public_repo\" under \"repo\"
+        \n5.   Check the option "repo"
         \n6.   Add a token description and click Generate token
         \n7.   Copy the token to the input field above
     </string>
@@ -41,7 +42,6 @@
     <string name="settings_dialog_negative">No</string>
 
     <!-- Preferences / Settings -->
-
     <string name="created">Created</string>
     <string name="alphabetical">Alphabetical</string>
     <string name="lastEdited">Last Edited</string>
@@ -89,9 +89,10 @@
     <string name="dialog_error_title">An error has occurred. \n\n Please try again later.</string>
     <string name="dialog_logout_title">You were logged out.</string>
 
-    <string name="confirmation_issueData">Issue #%s: \n %s \n\n</string>
+    <string name="confirmation_issueData">Issue #%s: \n %s</string>
     <string name="confirmation_wasCreated">was created</string>
     <string name="confirmation_btn">Back to Projects</string>
+
 
 
 </resources>

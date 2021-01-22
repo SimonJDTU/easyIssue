@@ -33,7 +33,7 @@ class LoginScreen : Fragment(), KoinComponent, OnPositiveSelected {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = DataBindingUtil.inflate<LoginScreenBinding>(
             inflater,
             R.layout.login_screen, container, false
@@ -44,16 +44,15 @@ class LoginScreen : Fragment(), KoinComponent, OnPositiveSelected {
         binding.viewModel = viewModel
 
         stateManager.userState.observe(viewLifecycleOwner, {
+            viewModel.isLoading.set(false)
             when (it) {
                 is SignInState.ValidToken -> {
                     findNavController().navigate(R.id.loginScreen_to_projectScreen)
                 }
                 is SignInState.Fail -> {
-                    binding.tokenInputLayout.error = getString(R.string.error_invalid_token)
-                    viewModel.isLoading.set(false)
+                    viewModel.tokenErrorMsg.set(getString(R.string.error_invalid_token))
                 }
                 is SignInState.InvalidToken -> {
-                    viewModel.isLoading.set(false)
                     InteractiveDialog(this, DialogType.Error()).show(
                         parentFragmentManager,
                         null

@@ -10,7 +10,7 @@
     app:cardUseCompatPadding="true"
     tools:backgroundTint="@color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/compBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/unit4_5"
